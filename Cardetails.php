@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php include("database.php");
-      
+      session_start();
       
     $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
     $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Login.Php";
