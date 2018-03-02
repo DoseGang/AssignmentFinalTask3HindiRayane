@@ -2,7 +2,7 @@
 
 <?php include("database.php");
       
-      session_start();
+      
     $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
     $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Login.Php";
     $home_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Home.php";
@@ -13,7 +13,7 @@
     $ses_sql = mysqli_query($conn,"select User_Username from user where User_Username='$user_check' ");
     $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $login_session = $row['User_Username'];
-
+    
     function search_keywords_id()
     {
         include("database.php");
@@ -116,16 +116,16 @@
                
                 $get_table = "SELECT * FROM vehicule where Vehicule_Type=1 ORDER BY Vehicule_Id ASC";
                 $store_table = mysqli_query($conn, $get_table); //Creates a table for every pictures containing their data
-               
+                $car_id = "SELECT Car_Id from car ";
         
                 //We go through the data of each line of our table
         
                 while ($row = mysqli_fetch_array($store_table)) //as long as we have a line in our table
                     {
                      
-                              
+                             // <a href="page2.php?varname=<?php echo $var_value
                     echo ("<div class='visionofart'>");
-                    echo ("<a target='_blank' href=". $row['Vehicule_PictureURL'] .">");
+                    echo ("<a target='_blank' href=Cardetails.php ?varname=<?php echo $car_id ?>");
                      echo ("<img src=" . $row['Vehicule_PictureURL']. " alt=". $row['Vehicule_Name'] ." width='100%' ");
                     echo ("</a> <div class='description'>".$row['Vehicule_Brand']." #".$row['Vehicule_Name']."</div></div>");                  
                     
