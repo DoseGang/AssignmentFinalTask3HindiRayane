@@ -1,6 +1,7 @@
 <?php include("database.php");
 
     session_start();
+    SessioncheckAdmin(){
     $user_check = $_SESSION['login_user'];
    
     $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' AND User_State =1");
@@ -8,9 +9,11 @@
     $login_session = $row['User_Username'];
     $login_state = $row['User_State'];
 
-    if( empty($row['User_State'])) {
+    if( $row['User_State']=0)) {
         $_SESSION['message'] ='You don t have the right to access this page.';
         header("Location: LoggedIn.php");
+    }
+        
     }
 
 ?>

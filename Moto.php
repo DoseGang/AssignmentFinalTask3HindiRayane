@@ -60,7 +60,7 @@
     
     <body>
        <a name="top"></a>
-        <h1 class = "topborder"  id = "topbordertitle">Cars</h1>
+        <h1 class = "topborder"  id = "topbordertitle">Motorcycles</h1>
         <input type = "checkbox" id="menuToggle">
         <label for="menuToggle" class="menu-icon">&#9776;</label>
         <header>
@@ -104,7 +104,7 @@
             </ul>
         
         </nav>
-         <button onclick="location.href ='Car.php';" id="button" title="Go to top">Back to Top</button>
+         <button onclick="location.href ='Moto.php';" id="button" title="Go to top">Back to Top</button>
         
        <?php 
        
@@ -114,7 +114,7 @@
                  
             
                
-                $get_table = "SELECT * FROM vehicule where Vehicule_Type=1 ORDER BY Vehicule_Id ASC";
+                $get_table = "SELECT * FROM vehicule where Vehicule_Type=0 ORDER BY Vehicule_Id ASC";
                 $store_table = mysqli_query($conn, $get_table); //Creates a table for every pictures containing their data
                
         

@@ -33,6 +33,7 @@
             <li><a href="Login.php">LOGIN</a></li>
             <li><a href="Register.php">REGISTER</a></li>
             <li><a href="Car.php">CARS</a></li>
+            <li><a href="Moto.php">MOTORCYCLES</a></li>
             
             
             </ul>
