@@ -1,7 +1,7 @@
 
 
 button {
-    background-color: saddlebrown;
+    background-color: #57A6C7;
     color: white;
     padding: 10px 15px;
     margin: 8px 0;
@@ -26,7 +26,7 @@ input[type=text], input[type=password] {
     border: 0;
     background-color: transparent;
     color: White;
-    outline-color: saddlebrown;
+    outline-color: #57A6C7;
     outline: 1;
     font-family: 'system-ui';
     
