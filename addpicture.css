@@ -1,0 +1,52 @@
+button {
+    background-color: saddlebrown;
+    color: Black;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: 0;
+    cursor: pointer;
+    width: 100%;
+    
+}
+.identification
+{
+    color: Black;
+    padding: 15% 32%;
+    line-height: 40px;
+    font-family:sans-serif;
+    opacity: 1;
+    
+}
+input[type=text]{
+    width: 100%;
+    padding: 16px 2px;
+    margin: 18px 0;
+    display: inline-block;
+    border: 0;
+    background-color: transparent;
+    color: White;
+    outline-color: saddlebrown;
+    outline: 1;
+    opacity: 1;
+    
+    
+}
+input[type=url] 
+{
+    background-color:transparent;
+    border: 0;
+    padding: 16px 2px;
+    margin: 18px 0;
+    color: white;
+    width: 100%;
+    outline-color: saddlebrown;
+    outline: 1;
+    opacity: 1;
+}
+
+input[type=checkbox] 
+{
+    background-color:transparent;
+    
+}
+

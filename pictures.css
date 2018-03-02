@@ -1,0 +1,58 @@
+div.description
+{
+
+    margin: 20px;
+    
+    text-align: center;
+    color: white;
+}
+div.visionofart
+{
+    margin: 10%;
+    width: 50%;
+    height: 50%;
+    margin-left: 25%;
+    text-align: center;
+    
+      
+}
+
+form{
+    position: relative;
+    left: 15%;
+    
+}
+input[type=text] {
+    background-color: transparent;
+    font-family: 'system-ui';
+    background-image: url(searchicon.png);
+    padding: 5px 25px;
+    margin: 15px 20px;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    width: 2%;
+    outline-color: saddlebrown;
+    outline: 1;
+    background-repeat: no-repeat;
+    -webkit-transition: width 0.4s ease-in-out;
+    
+    
+}
+input[type=text]:focus {
+    width: 20%;
+    background-color: black;
+    color: white;
+}
+button{
+    background-color: saddlebrown;
+    color: white;
+    padding: 10px 15px;
+    margin: 10px 80%;
+    border: 0;
+    cursor: pointer;
+    width: 10%;
+    position: fixed;
+    font-family: 'system-ui';
+    font-size: 100%;
+}

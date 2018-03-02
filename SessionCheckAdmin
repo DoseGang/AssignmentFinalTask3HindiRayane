@@ -1,0 +1,16 @@
+<?php include("database.php");
+
+    session_start();
+    $user_check = $_SESSION['login_user'];
+   
+    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' AND User_State > 1");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $login_session = $row['User_Username'];
+    $login_state = $row['User_State'];
+
+    if(!isset($_SESSION['login_user']) || !isset($_SESSION['login_state']) ){
+       
+        header("Location: Login.php");
+    }
+
+?>

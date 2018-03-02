@@ -1,0 +1,54 @@
+
+
+button {
+    background-color: saddlebrown;
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: 0;
+    cursor: pointer;
+    width: 100%;
+}
+
+.identification
+{
+    color: white;
+    padding: 15% 32%;
+    line-height: 40px;
+    font-family:sans-serif;
+    
+}
+input[type=text], input[type=password] {
+    width: 100%;
+   padding: 16px 2px;
+    margin: 18px 0;
+    display: inline-block;
+    border: 0;
+    background-color: transparent;
+    color: White;
+    outline-color: saddlebrown;
+    outline: 1;
+    font-family: 'system-ui';
+    
+    
+    
+    
+}
+input[type=checkbox]
+{
+    background-color: transparent;
+}
+body { 
+    
+    background-image: url(bglogin2.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-size: 100% 100%;
+    
+
+    
+}
