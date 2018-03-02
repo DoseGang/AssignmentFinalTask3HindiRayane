@@ -42,11 +42,7 @@
         
          <footer>
     
-            
-        <a class="res" target="_blank"  href="https://www.instagram.com/rayanedose/" >
-        <img src="instagram.png" alt="instagram" Height="35" Width="35" id="insta"></a>
-        <a class="res" target="_blank"  href="https://www.facebook.com/Doseeeeee">
-        <img src="logoFb.png" alt="facebook" Height="35" Width="35" id="facebook"></a>
+<span style="color: white";>Made by Rayane HINDI, Eléonore JEANNIOT & Jean-François LE GAL.</span>
         
     </footer> 
       
