@@ -2,22 +2,42 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    border-color: black;
+    border-collapse: collapse;
+    border: 5px solid;
+}
+
+
+th {
+    background-color: black;
+    color: white;
+}
+tr:hover {
+  background-color: #57A6C7;
+    
+  transition-duration: 0.5s;
 }
 
 th, td {
     padding: 15px;
     text-align: left;
-    border: 0;
+    
 }
 
+div{
+    color: black;
+}
 
 div.description
 {
 
     margin: 20px;
     
+    
+    
     text-align: center;
-    color: white;
+    color: black;
+    opacity: 5px;
 }
 div.visionofart
 {
@@ -26,6 +46,7 @@ div.visionofart
     height: 50%;
     margin-left: 25%;
     text-align: center;
+    
     
       
 }

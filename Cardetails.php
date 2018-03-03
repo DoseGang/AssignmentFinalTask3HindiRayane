@@ -145,7 +145,15 @@
   </tr>
   <tr>
     <td>Air Conditioning</td>
-    <td>");echo($row['Car_AirConditioning']);echo("</td>
+    <td>");
+        if($row['Car_AirConditioning']==1){
+            $row['Car_AirConditioning']= 'yes';}else
+        {
+             $row['Car_AirConditioning']= 'no';
+        }
+                    
+  
+                    echo($row['Car_AirConditioning']);echo("</td>
   </tr>
   <tr>
     <td>Luggage Size</td>

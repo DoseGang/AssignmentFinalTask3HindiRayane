@@ -136,7 +136,8 @@
                     echo ("<a target='_blank' href='Cardetails.php?vehicule_id=$Vehicule_Id&vehicule_url=$Vehicule_Url&Vehicule_name=$Vehicule_Name&Vehicule_brand=$Vehicule_Brand'>");
                     
                     echo ("<img src=" . $row['Vehicule_PictureURL']. " alt=". $row['Vehicule_Name'] ." width='100%' ");
-                    echo ("</a> <div class='description'>".$row['Vehicule_Brand']." ".$row['Vehicule_Name']." ".$row['Vehicule_Id']."</div></div>");                  
+                    echo ("</a> <div class='description'>".$row['Vehicule_Brand']." ".$row['Vehicule_Name']."
+                    <br />".$row['Vehicule_Description']."</div></div>");                  
                     
                     } 
             
