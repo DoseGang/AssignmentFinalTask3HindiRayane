@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php include("database.php");
-      session_start();
+     
       
     $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
     $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Login.Php";
@@ -13,7 +13,11 @@
     $ses_sql = mysqli_query($conn,"select User_Username from user where User_Username='$user_check' ");
     $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $login_session = $row['User_Username'];
-
+    if(isset($_GET['vehicule_id'])){$Vehicule_Id = $_GET['vehicule_id'];}
+    if(isset($_GET['vehicule_url'])){$Vehicule_Url = $_GET['vehicule_url'];}
+    if(isset($_GET['Vehicule_name'])){$Vehicule_Name= $_GET['Vehicule_name'];}
+    if(isset($_GET['Vehicule_brand'])){$Vehicule_Brand = $_GET['Vehicule_brand'];}
+    
     function search_keywords_id()
     {
         include("database.php");
@@ -60,7 +64,7 @@
     
     <body>
        <a name="top"></a>
-        <h1 class = "topborder"  id = "topbordertitle">Cars</h1>
+        <h1 class = "topborder"  id = "topbordertitle">Car Details</h1>
         <input type = "checkbox" id="menuToggle">
         <label for="menuToggle" class="menu-icon">&#9776;</label>
         <header>
@@ -104,7 +108,7 @@
             </ul>
         
         </nav>
-         <button onclick="location.href ='Car.php';" id="button" title="Go to top">Back to Top</button>
+         <button onclick="location.href ='Cardetails.php';" id="button" title="Go to top">Back to Top</button>
         
        <?php 
        
@@ -114,7 +118,7 @@
                  
             
                
-                $get_table = "SELECT * FROM vehicule where Vehicule_Type=1 ORDER BY Vehicule_Id ASC";
+                $get_table = "SELECT * FROM car where Vehicule_Id='$Vehicule_Id' ";
                 $store_table = mysqli_query($conn, $get_table); //Creates a table for every pictures containing their data
                
         
@@ -124,10 +128,36 @@
                     {
                      
                               
-                    echo ("<div class='visionofart'>");
-                    echo ("<a target='_blank' href=". $row['Vehicule_PictureURL'] .">");
-                     echo ("<img src=" . $row['Vehicule_PictureURL']. " alt=". $row['Vehicule_Name'] ." width='100%' ");
-                    echo ("</a> <div class='description'>".$row['Vehicule_Brand']." #".$row['Vehicule_Name']."</div></div>");                  
+                  echo ("<div class='visionofart'>");
+                  echo ("<img src=" .$Vehicule_Url." alt=".$Vehicule_Url." width='100%'  
+                </div>"); echo("<table><tr>");
+                    echo("<th>".$Vehicule_Brand." ".$Vehicule_Name."</th>");
+                   echo(" <th></th>
+                </tr>
+
+  <tr>
+    <td>Passenger</td>
+    <td>");echo($row['Car_Capacity']);echo("</td>
+  </tr>
+  <tr>
+    <td>Gearbox</td>
+    <td>");echo($row['Car_Gearbox']);echo("</td>
+  </tr>
+  <tr>
+    <td>Air Conditioning</td>
+    <td>");echo($row['Car_AirConditioning']);echo("</td>
+  </tr>
+  <tr>
+    <td>Luggage Size</td>
+    <td>");echo($row['Car_LuggageSize']."</td>
+    
+  </tr>
+  <tr>
+    <td>License Needed</td>
+    <td>");echo($row['Car_LicenseType']);echo("</td>
+  </tr>
+</table>");
+                                   
                     
                     } 
             
