@@ -145,7 +145,6 @@
             <button type="submit" name="register" value="register" >Register</button>
             </div>
         
-        
         </form>
         
         <footer>

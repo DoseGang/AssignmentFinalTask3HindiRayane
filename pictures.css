@@ -32,10 +32,7 @@ div.description
 {
 
     margin: 20px;
-    
-    
-    
-    text-align: center;
+    text-align: left;
     color: black;
     opacity: 5px;
 }
@@ -78,15 +75,28 @@ input[type=text]:focus {
     background-color: black;
     color: white;
 }
-button{
-    background-color: saddlebrown;
+
+.buttontotop{
     color: white;
-    padding: 10px 15px;
-    margin: 10px 80%;
+    background-color: #57A6C7;
     border: 0;
     cursor: pointer;
     width: 10%;
     position: fixed;
     font-family: 'system-ui';
     font-size: 100%;
+    padding: 10px 15px;
+    margin: 10px 80%;
+}
+.buttontoRent{
+    color: white;
+    background-color: #57A6C7;
+    border: 0;
+    cursor: pointer;
+    width: 10%;
+    padding: 1%;
+    margin: 1% 80%;
+    font-family: 'system-ui';
+    font-size: 100%;
+    
 }

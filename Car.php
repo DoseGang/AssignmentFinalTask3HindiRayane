@@ -103,7 +103,7 @@
             </ul>
         
         </nav>
-         <button onclick="location.href ='Car.php';" id="button" title="Go to top">Back to Top</button>
+         <a><button class="buttontotop" onclick="location.href ='#top';"  title="Go to top">Back to Top</button></a>
         
        <?php 
        

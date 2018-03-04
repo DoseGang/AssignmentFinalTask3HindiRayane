@@ -108,7 +108,8 @@
             </ul>
         
         </nav>
-         <button onclick="location.href ='Cardetails.php';" id="button" title="Go to top">Back to Top</button>
+         <a><button class="buttontotop" onclick="location.href ='#top';"  title="Go to top">Back to Top</button></a>
+        
         
        <?php 
        
@@ -164,18 +165,16 @@
     <td>License Needed</td>
     <td>");echo($row['Car_LicenseType']);echo("</td>
   </tr>
-</table>");
+  <tr>
+    <td> Fuel Type</td>
+    <td>");echo($row['Car_FuelType']);echo("</td></tr></table>");
                                    
-                    
-                    } 
             
-             
-          
-              
-                
+            
+        echo("<a><button class='buttontoRent' onclick='location.href ='#top'; title='Rent Car'>Rent Car</button></a>");
+            
+                    } 
               ?>
-   
-        
       
                 
             <footer>
