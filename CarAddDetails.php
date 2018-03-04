@@ -3,57 +3,23 @@
       include("SessionCheckAdmin.php");
       include("Reset_PicturesID.php");
 
- function isImage($url)
-  {
-     $params = array('http' => array(
-                  'method' => 'HEAD'
-               ));
-     $ctx = stream_context_create($params);
-     $fp = @fopen($url, 'rb', false, $ctx);
-     if (!$fp) 
-        return false;  
 
-    $meta = stream_get_meta_data($fp);
-    if ($meta === false)
-    {
-        fclose($fp);
-        return false;  
-    }
-
-    $wrapper_data = $meta["wrapper_data"];
-    if(is_array($wrapper_data)){
-      foreach(array_keys($wrapper_data) as $hh){
-          if (substr($wrapper_data[$hh], 0, 19) == "Content-Type: image") 
-          {
-            fclose($fp);
-            return true;
-          }
-      }
-    }
-
-    fclose($fp);
-    return false;
-  }
-    
+    if(isset($_POST['type'])){$type = $_POST['type'];}
     if($_SERVER ["REQUEST_METHOD"]== "POST"){
             
-        $url  = $_POST['url'];
-        $brand = $_POST['Brand'];
-        $type = $_POST['Type'];
-        $name = $_POST['Name'];
+     
         
         
-        
-        if(isImage($url)== TRUE){
+        {
         reset_pictures_ID();
-        $sql = "INSERT INTO vehicule (Vehicule_Id, Vehicule_Brand, Vehicule_Type, Vehicule_Name, Vehicule_PictureURL,Vehicule_Description) VALUES (NULL, '$brand', '$type', '$name','$url',NULL)";
+        $sql = "INSERT INTO vehicule (Vehicule_Brand) VALUES ('$type')";
         
         if ($conn->query($sql) === TRUE) {
             
                  $msg = "You have added a vehicule.";
             
-        } 
-        }else $msg = "You aren't adding a picture.";
+        } else $msg = "You aren't adding a picture.";
+        }
         
 }
 
@@ -95,7 +61,7 @@
         
         </nav>
         
-        <form  method="POST" action = "CarAddDetails.php">
+        <form  method="POST" href="CarAddDetails.php">
         
             <div class="identification">
                 <?php if(isset($msg)){
@@ -115,7 +81,7 @@
                 
                 <input type="url" placeholder="Picture of vehicule" name="url" required>
            
-            <button type="submit" name="type" value="<?php echo('$type'); ?>" >Submit</button>
+           
             </div>
         
         
@@ -152,14 +118,5 @@
 
 
 </html>
-
-
-
-
- 
-
-
-
-
 
 

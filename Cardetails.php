@@ -148,9 +148,9 @@
     <td>Air Conditioning</td>
     <td>");
         if($row['Car_AirConditioning']==1){
-            $row['Car_AirConditioning']= 'yes';}else
+            $row['Car_AirConditioning']= 'Yes';}else
         {
-             $row['Car_AirConditioning']= 'no';
+             $row['Car_AirConditioning']= 'No';
         }
                     
   
@@ -171,7 +171,7 @@
                                    
             
             
-        echo("<a><button class='buttontoRent' onclick='location.href ='#top'; title='Rent Car'>Rent Car</button></a>");
+        echo("<a class='rent'><button class='buttontoRent' onclick='location.href ='#top'; title='Rent Car'>Rent Car</button></a>");
             
                     } 
               ?>
@@ -180,10 +180,7 @@
             <footer>
     
             
-        <a class="res" target="_blank"  href="https://www.instagram.com/rayanedose/" >
-        <img src="instagram.png" alt="instagram" Height="35" Width="35" id="insta"></a>
-        <a class="res" target="_blank"  href="https://www.facebook.com/Doseeeeee">
-        <img src="logoFb.png" alt="facebook" Height="35" Width="35" id="facebook"></a>
+       <span style="color: white";>Made by Rayane HINDI, Eléonore JEANNIOT & Jean-François LE GAL.</span>
         
     </footer> 
         

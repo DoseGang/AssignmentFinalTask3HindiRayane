@@ -36,8 +36,8 @@
     $login_state = $row['User_State']; 
 
     if(!empty($row['User_State'])){
-            echo "<li><a href="; echo"AddPictures.php"; echo">ADD PICTURES</a></li>";
-            echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVEPICTURES</a></li>";
+            echo "<li><a href="; echo"AddPictures.php"; echo">ADD CARS</a></li>";
+            echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVE CARS</a></li>";
             }
             ?>
             </ul>
