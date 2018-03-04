@@ -41,7 +41,10 @@
         $brand = $_POST['Brand'];
         $type = $_POST['Type'];
         $name = $_POST['Name'];
-        
+        $get_vehicule_id = "SELECT Vehicule_Id FROM vehicule where Vehicule_Id = '$url' ";
+        $queryid = mysqli_query($conn,$get_vehicule_id);
+        $vehiculegetid =mysqli_fetch_array($queryid);
+        $vehicule_id = $vehiculegetid['Vehicule_Id'];
         
         
         if(isImage($url)== TRUE){
@@ -95,11 +98,11 @@
         
         </nav>
         
-        <form  method="POST" action = "CarAddDetails.php">
+        <form  method="POST" action = "AddPictures.php">
         
             <div class="identification">
                 <?php if(isset($msg)){
-    echo $msg; } else echo "<label><b>URL of the picture to add</b></label>"; ?>
+    echo $msg; } else echo "<label><b>Information of the Vehicule to add</b></label>"; ?>
                  
             
             
@@ -114,8 +117,8 @@
                 name="Name" required>
                 
                 <input type="url" placeholder="Picture of vehicule" name="url" required>
-           
-            <button type="submit" name="type" value="<?php echo('$type'); ?>" >Submit</button>
+                <input type=hidden value="<?php echo @$vehicule_id?>" name="vehicule_id" />
+                <button type="submit" name="type" value="submit" >SUBMIT</button>
             </div>
         
         
