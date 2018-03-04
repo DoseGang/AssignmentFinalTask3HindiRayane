@@ -66,8 +66,8 @@
     <head>
         <meta charset="UTF-8" />
         <title>C.R Luxury</title>
-        <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="addpicture.css">
+        <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
                             
     </head>
