@@ -1,16 +1,17 @@
+
 table {
-    font-family: arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     border-collapse: collapse;
     width: 100%;
-    border-color: black;
+    border-color: transparent;
     border-collapse: collapse;
-    border: 5px solid;
+    border: 1px solid gray;
 }
 
 
 th {
-    background-color: black;
-    color: white;
+    background-color: transparent;
+    color: black;
 }
 tr:hover {
   background-color: #57A6C7;
@@ -55,7 +56,6 @@ form{
 }
 input[type=text] {
     background-color: transparent;
-    font-family: 'system-ui';
     background-image: url(searchicon.png);
     padding: 5px 25px;
     margin: 15px 20px;
@@ -83,7 +83,6 @@ input[type=text]:focus {
     cursor: pointer;
     width: 10%;
     position: fixed;
-    font-family: 'system-ui';
     font-size: 100%;
     padding: 10px 15px;
     margin: 10px 80%;
@@ -96,7 +95,6 @@ input[type=text]:focus {
     width: 10%;
     padding: 1%;
     margin: 1%;
-    font-family: 'system-ui';
     font-size: 100%;
     
 }

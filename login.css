@@ -28,11 +28,6 @@ input[type=text], input[type=password] {
     color: White;
     outline-color: #57A6C7;
     outline: 1;
-    font-family: 'system-ui';
-    
-    
-    
-    
 }
 input[type=checkbox]
 {

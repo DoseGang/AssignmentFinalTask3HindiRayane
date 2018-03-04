@@ -25,13 +25,8 @@ input{
     border: 0;
     background-color: white;
     color: White;
-    outline-color: saddlebrown;
+    outline-color: #57A6C7;
     outline: 1;
-    font-family: 'system-ui';
-    
-    
-    
-    
 }
 input[type=checkbox]
 {

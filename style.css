@@ -9,7 +9,6 @@
     color: white; 
     margin-left: 5px ;
     line-height: 40px;
-    font-family:sans-serif;
 }
 
 
@@ -23,7 +22,8 @@ body {
 
 .pagebg { 
     
-    background-image: url(backgroundcar2.jpeg);
+    /*background-image: url(backgroundcar2.jpeg);*/
+    background-color: white;
     -webkit-filter: blur(5px);
     -moz-filter: blur(5px);
     -o-filter: blur(5px);
@@ -43,7 +43,8 @@ body {
    
     *{padding: 0;margin: 0;}
     body {
- font-family:'system-ui';
+ font-family: 'Roboto', sans-serif;
+
 }
 
 a {
@@ -66,7 +67,7 @@ header {
 }
 
 input[type=text]{
-font-family: 'system-ui';
+    font-family: 'Roboto', sans-serif;
 }
 
 #brand {
@@ -75,7 +76,6 @@ font-family: 'system-ui';
  font-size:20px;
  margin-left: 10px ;
  line-height: 50px;
- font-family:sans-serif;
     
 }
 
