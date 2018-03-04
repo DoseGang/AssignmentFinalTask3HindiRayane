@@ -17,6 +17,7 @@
         <title>C.R Luxury</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="addpicture.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
                             
     </head>
 
