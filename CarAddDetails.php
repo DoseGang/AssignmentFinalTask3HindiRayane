@@ -5,23 +5,9 @@
 
 
     if(isset($_POST['type'])){$type = $_POST['type'];}
-    if($_SERVER ["REQUEST_METHOD"]== "POST"){
-            
-     
+    
         
-        
-        {
-        reset_pictures_ID();
-        $sql = "INSERT INTO vehicule (Vehicule_Brand) VALUES ('$type')";
-        
-        if ($conn->query($sql) === TRUE) {
-            
-                 $msg = "You have added a vehicule.";
-            
-        } else $msg = "You aren't adding a picture.";
-        }
-        
-}
+/*}*/
 
 ?>
 
@@ -61,7 +47,7 @@
         
         </nav>
         
-        <form  method="POST" href="CarAddDetails.php">
+        <form  method="GET" href="CarAddDetails.php">
         
             <div class="identification">
                 <?php if(isset($msg)){
@@ -80,7 +66,7 @@
                 name="Name" required>
                 
                 <input type="url" placeholder="Picture of vehicule" name="url" required>
-           
+           <button type="submit" name="type" value="submit" >SUBMIT</button>
            
             </div>
         
