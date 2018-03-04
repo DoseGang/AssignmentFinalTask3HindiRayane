@@ -117,7 +117,7 @@
                 name="Name" required>
                 
                 <input type="url" placeholder="Picture of vehicule" name="url" required>
-                <input type=hidden value="<?php echo @$vehicule_id?>" name="vehicule_id" />
+                <input type=hidden value="<?php echo $vehicule_id?>" name="vehicule_id" />
                 <button type="submit" name="type" value="submit" >SUBMIT</button>
             </div>
         
