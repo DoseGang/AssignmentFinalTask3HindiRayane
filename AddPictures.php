@@ -3,62 +3,29 @@
       include("SessionCheckAdmin.php");
       include("Reset_PicturesID.php");
 
- function isImage($url)
-  {
-     $params = array('http' => array(
-                  'method' => 'HEAD'
-               ));
-     $ctx = stream_context_create($params);
-     $fp = @fopen($url, 'rb', false, $ctx);
-     if (!$fp) 
-        return false;  
 
-    $meta = stream_get_meta_data($fp);
-    if ($meta === false)
-    {
-        fclose($fp);
-        return false;  
-    }
-
-    $wrapper_data = $meta["wrapper_data"];
-    if(is_array($wrapper_data)){
-      foreach(array_keys($wrapper_data) as $hh){
-          if (substr($wrapper_data[$hh], 0, 19) == "Content-Type: image") 
-          {
-            fclose($fp);
-            return true;
-          }
-      }
-    }
-
-    fclose($fp);
-    return false;
-  }
+if($_SERVER ["REQUEST_METHOD"]== "POST"){
     
-    if($_SERVER ["REQUEST_METHOD"]== "POST"){
+        $capacity = $_POST['Capacity'];   
+        $gearboxtype = $_POST['Gearbox'];
+        $airconditioning =$_POST['AirConditioning'];
+        $luggagesize =$_POST['LuggageSize'];
+        $licenseneeded= $_POST['LicenseNeeded'];
+        $fueltype=$_POST['FuelType'];
+        if(isset($_GET['vehicule_id2'])){$vehiculeid2 = $_GET['vehicule_id2'];}
+       
+        $sql2 = "INSERT INTO `car` (`Car_Id`, `Vehicule_Id`, `Car_Capacity`, `Car_Gearbox`, `Car_AirConditioning`, `Car_LuggageSize`, `Car_LicenseType`, `Car_FuelType`) VALUES (NULL,'$vehiculeid2', '$capacity', '$gearboxtype','$airconditioning','$luggagesize','$licenseneeded','$fueltype')";
+
+        
+            if ($conn->query($sql2) == TRUE) {
             
-        $url  = $_POST['url'];
-        $brand = $_POST['Brand'];
-        $type = $_POST['Type'];
-        $name = $_POST['Name'];
-        $get_vehicule_id = "SELECT Vehicule_Id FROM vehicule where Vehicule_Id = '$url' ";
-        $queryid = mysqli_query($conn,$get_vehicule_id);
-        $vehiculegetid =mysqli_fetch_array($queryid);
-        $vehicule_id = $vehiculegetid['Vehicule_Id'];
-        
-        
-        if(isImage($url)== TRUE){
-        reset_pictures_ID();
-        $sql = "INSERT INTO vehicule (Vehicule_Id, Vehicule_Brand, Vehicule_Type, Vehicule_Name, Vehicule_PictureURL,Vehicule_Description) VALUES (NULL, '$brand', '$type', '$name','$url',NULL)";
-        
-        if ($conn->query($sql) === TRUE) {
+                 $msg = "Vehicule Added.";
             
-                 $msg = "You have added a vehicule.";
-            
-        } 
-        }else $msg = "You aren't adding a picture.";
-        
+        }
 }
+ 
+ 
+    
 
 ?>
 
@@ -93,13 +60,15 @@
             <li><a href="Loggedin.php">HOME</a></li>
             <li><a href="Logout.Php">LOGOUT</a></li>
             <li><a href="Car.php">CAR</a></li>
-            <li><a href="RemovePictures.php">REMOVE PICTURES</a></li>
+            <li><a href="Moto.php">MOTORCYCLES</a></li>
+            <li><a href="RemovePictures.php">REMOVE CARS</a></li>
+            
             
             </ul>
         
         </nav>
         
-        <form  method="POST" action = "AddPictures.php">
+        <form  method="POST" action = "CarAddDetails.php">
         
             <div class="identification">
                 <?php if(isset($msg)){
@@ -116,9 +85,10 @@
                 
                 <input type="text" placeholder="Vehicule Name"  maxlength="100" 
                 name="Name" required>
+                 <input type="text" placeholder="Vehicule Description" name="desc" required>
                 
                 <input type="url" placeholder="Picture of vehicule" name="url" required>
-                <input type=hidden value="<?php echo $vehicule_id?>" name="vehicule_id" />
+                
                 <button type="submit" name="type" value="submit" >SUBMIT</button>
             </div>
         

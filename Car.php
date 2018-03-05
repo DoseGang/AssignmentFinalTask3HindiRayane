@@ -24,7 +24,7 @@
         {
             
            
-            $get_output = "SELECT * FROM gallery WHERE (Gallery_PictureID LIKE '%".$user_input."%') OR (Gallery_PictureDescription LIKE '%".$user_input."%') ";
+            $get_output = "SELECT * FROM vehicule WHERE (Vehicule_Brand LIKE '%".$user_input."%') OR (Vehicule_Name LIKE '%".$user_input."%') ";
             $get_output= htmlspecialchars($get_output);
              
             $store_output = mysqli_query($conn, $get_output);
@@ -33,9 +33,9 @@
                 while ($row_of_searchmatch = mysqli_fetch_array($store_output))
                 {
                      echo ("<div class='visionofart'>");
-                    echo ("<a target='_blank' href=". $row_of_searchmatch['Gallery_PictureURL'] .">");
-                     echo ("<img src=" . $row_of_searchmatch['Gallery_PictureURL']. " alt=". $row_of_searchmatch['Gallery_PictureDescription'] ." width='600' ");
-                    echo ("</a> <div class='description'>".$row_of_searchmatch['Gallery_PictureDescription']." #".$row_of_searchmatch['Gallery_PictureID']."</div></div>");        
+                    echo ("<a target='_blank' href=". $row_of_searchmatch['Vehicule_PictureURL'] .">");
+                     echo ("<img src=" . $row_of_searchmatch['Vehicule_PictureURL']. " alt=". $row_of_searchmatch['Vehicule_Description'] ." width='600' ");
+                    echo ("</a> <div class='description'>".$row_of_searchmatch['Vehicule_Description']." #</div></div>");        
                   
                 }
             }else header("Location: Car.php?msg5=" . urlencode(base64_encode("No matches found.")));

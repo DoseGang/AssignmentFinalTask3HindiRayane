@@ -3,11 +3,69 @@
       include("SessionCheckAdmin.php");
       include("Reset_PicturesID.php");
 
+ function isImage($url)
+  {
+     $params = array('http' => array(
+                  'method' => 'HEAD'
+               ));
+     $ctx = stream_context_create($params);
+     $fp = @fopen($url, 'rb', false, $ctx);
+     if (!$fp) 
+        return false;  
 
-    if(isset($_POST['type'])){$type = $_POST['type'];}
-    
+    $meta = stream_get_meta_data($fp);
+    if ($meta === false)
+    {
+        fclose($fp);
+        return false;  
+    }
+
+    $wrapper_data = $meta["wrapper_data"];
+    if(is_array($wrapper_data)){
+      foreach(array_keys($wrapper_data) as $hh){
+          if (substr($wrapper_data[$hh], 0, 19) == "Content-Type: image") 
+          {
+            fclose($fp);
+            return true;
+          }
+      }
+    }
+
+    fclose($fp);
+    return false;
+  }
+ if($_SERVER ["REQUEST_METHOD"]== "POST"){
+        $url  = $_POST['url'];
+        $brand = $_POST['Brand'];
+        $type = $_POST['Type'];
+        $name = $_POST['Name'];
+        $desc = $_POST['desc'];
+      
+                
+        if(isImage($url)== TRUE){
+            reset_pictures_ID();
+            $sql = "INSERT INTO vehicule (Vehicule_Id, Vehicule_Brand, Vehicule_Type, Vehicule_Name, Vehicule_PictureURL,Vehicule_Description) VALUES (NULL, '$brand', '$type', '$name','$url','$desc')";
+           
         
-/*}*/
+        if ($conn->query($sql) == TRUE) {
+            
+                 
+                 $msg = "Please Enter Details of Vehicule";
+            
+        } 
+      }
+ }
+    
+                $get_vehicule_id = "SELECT Vehicule_Id FROM vehicule WHERE Vehicule_PictureURL = '$url' ";
+                 $resultid = mysqli_query($conn,$get_vehicule_id);
+                 $row =mysqli_fetch_array($resultid);
+                 $vehicule_id2 = $row['Vehicule_Id'];
+        
+        
+        
+        
+
+
 
 ?>
 
@@ -47,25 +105,26 @@
         
         </nav>
         
-        <form  method="GET" href="CarAddDetails.php">
+        <form  method="POST" action= "AddPictures.php?vehicule_id2=<?php echo $vehicule_id2 ?>" >
         
             <div class="identification">
                 <?php if(isset($msg)){
-    echo $msg; } else echo "<label><b>URL of the picture to add</b></label>"; ?>
+    echo $msg; } else echo "<label><b>Add Car Details</b></label>"; 
+                
+                  
+?>
                  
             
             
             
-                <input type="text" placeholder="Enter Brand of Vehicule"  maxlength="200" name="Brand" required>
-                <label class="container">
-                <input type="radio" name="Type" value="0"> It's a  Motorcycle<br>
-                <input type="radio" name="Type" value="1" checked> It's a car<br>
-                </label>
+                <input type="text" placeholder="Enter Passenger Capacity"  maxlength="200" name="Capacity" required>
+                <input type="text" placeholder="Gearbox Type"  maxlength="100" 
+                name="Gearbox" required>
+                <input type="text" placeholder="Air Conditioning" name="AirConditioning" required>
+                <input type="text" placeholder="Luggage Size" name="LuggageSize" required>
+                <input type="text" placeholder="License Needed" name="LicenseNeeded" required>
+                <input type="text" placeholder="Fuel Type" name="FuelType" required>
                 
-                <input type="text" placeholder="Vehicule Name"  maxlength="100" 
-                name="Name" required>
-                
-                <input type="url" placeholder="Picture of vehicule" name="url" required>
            <button type="submit" name="type" value="submit" >SUBMIT</button>
            
             </div>
