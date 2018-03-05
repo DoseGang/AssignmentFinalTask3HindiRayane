@@ -112,6 +112,7 @@
             <li><a href="Home.php">HOME</a></li>
             <li><a href="Login.php">LOGIN</a></li>
             <li><a href="Car.php">CAR</a></li>
+            <li><a href="Moto.php">MOTORCYCLES</a></li>
            
             
             </ul>

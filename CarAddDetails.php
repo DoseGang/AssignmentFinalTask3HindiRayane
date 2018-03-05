@@ -56,7 +56,7 @@
       }
  }
     
-                $get_vehicule_id = "SELECT Vehicule_Id FROM vehicule WHERE Vehicule_PictureURL = '$url' ";
+                 $get_vehicule_id = "SELECT Vehicule_Id FROM vehicule WHERE Vehicule_PictureURL = '$url' ";
                  $resultid = mysqli_query($conn,$get_vehicule_id);
                  $row =mysqli_fetch_array($resultid);
                  $vehicule_id2 = $row['Vehicule_Id'];
@@ -74,6 +74,7 @@
         <meta charset="UTF-8" />
         <title>C.R Luxury</title>
         <link rel="stylesheet" href="addpicture.css">
+        <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
                             
     </head>

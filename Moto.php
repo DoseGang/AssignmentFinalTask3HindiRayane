@@ -3,11 +3,13 @@
 <?php include("database.php");
       
       
-    $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
+     $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
     $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Login.Php";
     $home_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Home.php";
     $logout_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Logout.php";
     $moto_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Moto.php"; 
+    $register_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Register.php"; 
+    $car_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Car.php";
     session_start();
     @$user_check = $_SESSION['login_user'];
     $ses_sql = mysqli_query($conn,"select User_Username from user where User_Username='$user_check' ");
@@ -77,17 +79,21 @@
             
         </header>
             
-        <nav class ="menu">
+         <nav class ="menu">
         <ul>
             
            <?php  if(isset($_SESSION['login_user'])){
-            echo  "<li><a href=".$loggedin_address.">HOME</a></li>"; } else echo
-            "<li><a href=".$home_address.">HOME</a></li>";
-            
-               if(isset($_SESSION['login_user'])){echo "<li><a href=".$logout_address.">LOGOUT</a></li>";echo "<li><a href=".$moto_address.">MOTORCYCLES</a></li>";
-                                                 }
-            
-            else echo "<li><a href=".$loggin_address.">LOGIN</a></li>";  ?>
+            echo  "<li><a href=".$loggedin_address.">HOME</a></li>";
+            echo "<li><a href=".$logout_address.">LOGOUT</a></li>";
+            echo "<li><a href=".$car_address.">CARS</a></li>";
+
+} else {
+            echo "<li><a href=".$home_address.">HOME</a></li>";
+            echo "<li><a href=".$loggin_address.">LOGIN</a></li>";
+            echo "<li><a href=".$register_address.">REGISTER</a></li>";
+            echo "<li><a href=".$car_address.">CARS</a></li>";
+}
+            ?>
             <?php @$user_check = $_SESSION['login_user'];
    
     $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' AND User_State =1");
@@ -95,7 +101,8 @@
     $login_session = $rowstate['User_Username'];
     $login_state = $rowstate['User_State']; 
 
-    if(!empty($row['User_State'])){
+    if(($rowstate['User_State'])==1){
+            
             echo "<li><a href="; echo"AddPictures.php"; echo">ADD PICTURES</a></li>";
             echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVEPICTURES</a></li>";
             }
