@@ -138,7 +138,7 @@
             <label><b>MobileNumber</b></label>
             <input type="tel" placeholder="Enter Mobile Number" name="mobilenumber"required >
             <label><b>DateOfBirth</b></label>
-            <input type="date" placeholder="Enter Date Of Birth" name="dateofbirth"required >
+            <input type="date" placeholder="Enter Date Of Birth"  data-date-inline-picker="true" name="dateofbirth"required >
             <label><b>Country</b></label>
             <input type="text" placeholder="Enter Country" name="country" >
             <label><b>City</b></label>

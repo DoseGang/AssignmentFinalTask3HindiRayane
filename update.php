@@ -1,5 +1,5 @@
 <?php
-    include("database.php");
+      include("database.php");
       include("Reset_UserID.php");
       include("Reset_Information_Id.php");
       include("SessionCheck.php");
