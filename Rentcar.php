@@ -7,12 +7,19 @@
     if(isset($_GET['carid'])){$Car_Id = $_GET['carid'];}
     $sql = "SELECT * FROM vehiculespec WHERE Vehicule_Rented =0 AND Car_Id='$Car_Id'";
     $store_result = mysqli_query($conn,$sql);
-    
-    
-     
-    
-    
 
+    
+    
+    $ses_sql = mysqli_query($conn,"select User_Id from user where User_Username='$user_check' ");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $User_Id = $row['User_Id'];
+
+    $ses_sql2 = mysqli_query($conn,"select VehiculeSpec_Id from vehiculespec where Car_Id='$Car_Id' ");
+    $row2 = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $Car_Id = $row2['Car_Id'];
+    
+    
+INSERT INTO `reservation` (`Reservation_Id`, `User_ID`, `VehiculeSpec_Id`, `Reservation_DateStart`, `Reservation_DateEnd`, `Reservation_CityOfDeparture`, `Reservation_CityOfReturn`, `Reservation_ReturnPoint`, `Reservation_CarState`, `Reservation_FuelLevel`, `Reservation_Assurance`) VALUES (NULL, NULL, NULL, '', '', '', '', '', '', '', NULL)
         
 
 ?>
