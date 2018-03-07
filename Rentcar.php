@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php include("database.php");
+      include("SessionCheck.php");
       include("Reset_PicturesID.php");
             
     

@@ -29,6 +29,7 @@
             <li><a href="Logout.php">LOGOUT</a></li>
             <li><a href="Car.php">CAR</a></li>
             <li><a href="Moto.php">MOTORCYCLES</a></li>
+            <li><a href="informations.php">MY INFORMATION</a></li>
             <?php $user_check = $_SESSION['login_user'];
    
     $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' AND User_State =1");
