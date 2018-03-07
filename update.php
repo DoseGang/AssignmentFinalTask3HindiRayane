@@ -1,13 +1,12 @@
 <?php
 	include("database.php");
       include("Reset_UserID.php");
-      include("Reset_Information_Id.php");
-      include("SessionCheck.php");
+      include("Reset_Information_Id.php");   
 
-          
+          session_start();
     @$user_check = $_SESSION['login_user'];
-    $ses_sql = "SELECT * from user WHERE User_Username='$user_check' ";
-    
+    $ses_sql = mysqli_query($conn,"select User_Username, User_Password, User_Email, User_FirstName, User_SecondName, User_Adresse, User_License, User_MobileNumber, User_DateOfBirth, User_Country, User_City from user where User_Username='$user_check' ");
+
 $username = $_POST['uname'];
 $password = $_POST['upsw'];
 $email = $_POST['uemail'];
@@ -20,13 +19,11 @@ $date = $_POST['udate'];
 $country = $_POST['ucountry'];
 $city = $_POST['ucity'];
 
-$query = "UPDATE user SET User_Username = '$username', User_Password = '$password', User_Email = '$email', User_FirstName = '$firstname', User_SecondName = '$secondname', User_Adresse = '$address', User_License = '$license', User_MobileNumber = '$mobile', User_DateOfBirth = '$date', User_Country = '$country', User_City = '$city' WHERE User_Username = '$user_check'";
+$query = "UPDATE user SET User_Username = '$username', User_Password = '$password', User_Email = '$email', User_FirstName = '$firstname', User_SecondName = '$secondname', User_Adresse = '$address', User_License = '$license', User_MobileNumber = '$mobile', User_DateOfBirth = '$date', User_Country = '$country', User_City = '$city' WHERE User_ID = '$login_id'";
 
+/* $register_user = $conn->prepare("UPDATE user SET User_Username = '$username', User_Password = '$password', User_Email = '$email', User_FirstName = '$firstname', User_SecondName = '$secondname', User_Adresse = '$address', User_License = '$license', User_MobileNumber = '$mobile', User_DateOfBirth = '$date', User_Country = '$country', User_City = '$city' WHERE User_Password = '$password'");
+           //$register_user->bind_param("sssssssssss",$uname,$psw,$fname,$sname,$adresse,$dateofbirth,$license,$mobilenumber,$country,$city,$email);*/
 
-
-if(mysqli_query($conn,$query) == TRUE){
-    $user_check = $_SESSION['User_Username'];
-    header('Location:Loggedin.php');
-} 
+echo "updated";
 
 ?>
