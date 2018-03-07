@@ -172,10 +172,15 @@
                                    
             
             
-        echo("<a class='rent'><button class='buttontoRent' onclick='location.href ='#top'; title='Rent Car'>Rent Car</button></a>");
+       
             
                     } 
+        
               ?>
+        <form method="get" action="Rentcar.php">
+        <a ><button class='buttontoRent'type='submit'  title='Rent Car'>Rent Car</button></a>
+        </form>
+        
       
                 
             <footer>

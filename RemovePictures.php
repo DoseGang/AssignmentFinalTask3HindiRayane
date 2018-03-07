@@ -28,6 +28,7 @@ function deletecar(){
         }
         else {
             
+            $sql = "SELECT Vehicule_Type FROM Vehicule WHERE Vehicule_Id= '$id' ";
             $retval = mysqli_query($conn,$sql);
             $row = mysqli_fetch_array($retval);
             $type = $row['Vehicule_Type'];
@@ -38,6 +39,7 @@ function deletecar(){
                 $delete_vehiculespec = "DELETE * FROM vehiculespec WHERE Vehicule_Id='$id' ";
                 mysqli_query($conn,$delete_vehiculespec);
                 $delete_vehicule = "DELETE * FROM vehicule WHERE Vehicule_Id='$id'";
+                mysqli_query($conn,$delete_vehicule);
             }else {
                 $delete_motorcycle="DELETE * FROM motorcycle WHERE Vehicule_Id='$id'";
                 mysqli_query($conn,$delete_motorycycle);
