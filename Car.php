@@ -67,7 +67,7 @@
         <label for="menuToggle" class="menu-icon">&#9776;</label>
         <header>
             <div id="brand"><?php if(isset($_GET['msg5'])){
-    echo base64_decode(urldecode($_GET['msg5'])); }else echo "Explore Me"; ?>
+    echo base64_decode(urldecode($_GET['msg5'])); } if (isset($_GET['carnotavailable'])){echo base64_decode(urldecode($_GET['carnotavailable']));} else echo "Explore Me"; ?>
             </div>
             <div class="pagebg"></div>
             <form action="" method="GET" target="_blank" >

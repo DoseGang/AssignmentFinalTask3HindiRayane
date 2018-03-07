@@ -40,11 +40,13 @@
         $type = $_POST['Type'];
         $name = $_POST['Name'];
         $desc = $_POST['desc'];
+        
       
                 
         if(isImage($url)== TRUE){
             reset_pictures_ID();
             $sql = "INSERT INTO vehicule (Vehicule_Id, Vehicule_Brand, Vehicule_Type, Vehicule_Name, Vehicule_PictureURL,Vehicule_Description) VALUES (NULL, '$brand', '$type', '$name','$url','$desc')";
+           
            
         
         if ($conn->query($sql) == TRUE) {
@@ -125,6 +127,9 @@
                 <input type="text" placeholder="Luggage Size" name="LuggageSize" required>
                 <input type="text" placeholder="License Needed" name="LicenseNeeded" required>
                 <input type="text" placeholder="Fuel Type" name="FuelType" required>
+                <input type="text" placeholder="Vehicule Plate" name="plate" required>
+                <input type="text" placeholder="Kilometers" name="kilometers" required>
+                <input type="number" step="0.01" placeholder="Price per day" name="Price" required>
                 
            <button type="submit" name="type" value="submit" >SUBMIT</button>
            

@@ -126,14 +126,14 @@
         
                 //We go through the data of each line of our table
         
-                while ($row = mysqli_fetch_array($store_table)) //as long as we have a line in our table
+                if ($row = mysqli_fetch_array($store_table)) //as long as we have a line in our table
                     {
-                     
+                     $carid = $row['Car_Id'];
                               
                   echo ("<div class='visionofart'>");
                   echo ("<img src=" .$Vehicule_Url." alt=".$Vehicule_Url." width='100%'  
                 </div>"); echo("<table><tr>");
-                    echo("<th>".$Vehicule_Brand." ".$Vehicule_Name."</th>");
+                    echo("<th>".$Vehicule_Brand." ".$Vehicule_Name." </th>");
                    echo(" <th></th>
                 </tr>
 
@@ -168,7 +168,11 @@
   </tr>
   <tr>
     <td> Fuel Type</td>
-    <td>");echo($row['Car_FuelType']);echo("</td></tr></table>");
+    <td>");echo($row['Car_FuelType']);echo("</td></tr>
+    <tr>
+    <td>Price per day</td>
+    <td>");echo($row['Car_Price']."€");echo("</td>
+  </tr></table>");
                                    
             
             
@@ -177,8 +181,10 @@
                     } 
         
               ?>
-        <form method="get" action="Rentcar.php">
-        <a ><button class='buttontoRent'type='submit'  title='Rent Car'>Rent Car</button></a>
+        <form method="POST" action="Rentcar.php?carid=<?php echo $carid ?>">
+            
+            
+            <a ><button class='buttontoRent'type='submit'  title='Rent Car'>Rent Car</button></a>
         </form>
         
       

@@ -12,12 +12,23 @@ if($_SERVER ["REQUEST_METHOD"]== "POST"){
         $luggagesize =$_POST['LuggageSize'];
         $licenseneeded= $_POST['LicenseNeeded'];
         $fueltype=$_POST['FuelType'];
+        $price = $_POST['Price'];
+        $plate = $_POST['plate'];
+        $kilometers = $_POST['kilometers'];
         if(isset($_GET['vehicule_id2'])){$vehiculeid2 = $_GET['vehicule_id2'];}
-       
-        $sql2 = "INSERT INTO `car` (`Car_Id`, `Vehicule_Id`, `Car_Capacity`, `Car_Gearbox`, `Car_AirConditioning`, `Car_LuggageSize`, `Car_LicenseType`, `Car_FuelType`) VALUES (NULL,'$vehiculeid2', '$capacity', '$gearboxtype','$airconditioning','$luggagesize','$licenseneeded','$fueltype')";
+    
+        $sql2 = "INSERT INTO `car` (`Car_Id`, `Vehicule_Id`, `Car_Capacity`, `Car_Gearbox`, `Car_AirConditioning`, `Car_LuggageSize`, `Car_LicenseType`, `Car_FuelType`,Car_Price) VALUES (NULL,'$vehiculeid2', '$capacity', '$gearboxtype','$airconditioning','$luggagesize','$licenseneeded','$fueltype','$price')";
+    
+        $get_car_id = "SELECT Car_Id FROM car WHERE Car_Id = '$vehiculeid2' ";
+        $resultcarid = mysqli_query($conn,$get_car_id);
+        $row =mysqli_fetch_array($resultcarid);
+        $car_id = $row['Car_Id'];
+    
+        $sql3 = "INSERT INTO vehiculespec (VehiculeSpec_Plate,VehiculeSpec_Kilometers,Car_Id) VALUES(NULL,'$plate','$kilometers','$car_id')";
+
 
         
-            if ($conn->query($sql2) == TRUE) {
+            if ($conn->query($sql2) == TRUE && $conn->query($sql3) == TRUE) {
             
                  $msg = "Vehicule Added.";
             
@@ -88,6 +99,7 @@ if($_SERVER ["REQUEST_METHOD"]== "POST"){
                  <input type="text" placeholder="Vehicule Description" name="desc" required>
                 
                 <input type="url" placeholder="Picture of vehicule" name="url" required>
+                
                 
                 <button type="submit" name="type" value="submit" >SUBMIT</button>
             </div>
