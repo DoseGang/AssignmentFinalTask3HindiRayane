@@ -11,10 +11,10 @@
   if($_SERVER ["REQUEST_METHOD"]== "POST"){
     
         $Startingdate = $_POST['Sdate']; 
-        $Startingdate = strtotime("$Startingdate");
+        $Startingdate2 = strtotime("$Startingdate");
         $Endingdate = $_POST['Edate'];
-        $Endingdate = strtotime("$Endingdate");
-        $timeDiff = abs($Endingdate - $Startingdate);
+        $Endingdate2 = strtotime("$Endingdate");
+        $timeDiff = abs($Endingdate2 - $Startingdate2);
         $numberofdays = $timeDiff/86400;
         $numberofdays = floatval($numberofdays);
         $returnpoint =$_POST['Reservation_Return'];
@@ -101,7 +101,7 @@
             else echo "<li><a href=".$loggin_address.">LOGIN</a></li>";  ?>
             <?php @$user_check = $_SESSION['login_user'];
    
-    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' AND User_State =1");
+    $ses_sql = mysqli_query($conn,"select * from user WHERE User_Username='$user_check' ");
     $rowstate = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $login_session = $rowstate['User_Username'];
     $login_state = $rowstate['User_State']; 
