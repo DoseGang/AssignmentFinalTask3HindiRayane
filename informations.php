@@ -57,7 +57,7 @@
         <nav class ="menu">
         <ul>
             
-            <li><a href="Home.php">HOME</a></li>
+            <li><a href="Loggedin.php">HOME</a></li>
             <li><a href="Home.php">LOGOUT</a></li>
             <li><a href="Car.php">CARS</a></li>
             <li><a href="Moto.php">MOTORCYCLES</a></li>

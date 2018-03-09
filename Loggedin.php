@@ -32,14 +32,18 @@
             <li><a href="informations.php">MY INFORMATION</a></li>
             <?php $user_check = $_SESSION['login_user'];
    
-    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' AND User_State =1");
+    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' ");
     $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $login_session = $row['User_Username'];
     $login_state = $row['User_State']; 
 
-    if(!empty($row['User_State'])){
+    if($row['User_State']==1){
             echo "<li><a href="; echo"AddPictures.php"; echo">ADD CARS</a></li>";
             echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVE CARS</a></li>";
+            }
+            if($row['User_State']==2){
+            echo "<li><a href="; echo"parking.php"; echo">PARKING</a></li>";
+            
             }
             ?>
             </ul>
