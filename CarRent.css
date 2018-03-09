@@ -10,11 +10,20 @@ button {
 
 .identification
 {
-    color: Black;
+    color: white;
     padding: 10% 22%;
     line-height: 40px;
+    letter-spacing: 0.1ch;
     font-family:sans-serif;
-    
+    background: 
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.8)
+    )
+}
+label{
+    opacity: 1;
 }
 input,select {
     width: 20%;
@@ -26,6 +35,7 @@ input,select {
     color: black;
     outline-color: #57A6C7;
     outline: 1;
+    
 }
 
 
@@ -33,6 +43,7 @@ input,select {
 body { 
     
     background-image: url(bglogin2.jpg);
+    opacity:1;
     background-attachment: fixed;
     background-repeat: no-repeat;
     position: absolute;

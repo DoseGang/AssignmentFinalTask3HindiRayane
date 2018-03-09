@@ -14,13 +14,13 @@
     $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $User_Id = $row['User_Id'];
 
-    $ses_sql2 = mysqli_query($conn,"select VehiculeSpec_Id from vehiculespec where Car_Id='$Car_Id' ");
-    $row2 = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-    $Car_Id = $row2['Car_Id'];
+    $ses_sql2 = mysqli_query($conn,"select VehiculeSpec_Id from vehiculespec where Car_Id='$Car_Id' AND Vehicule_Rented ='0' ");
+    $row2 = mysqli_fetch_array($ses_sql2,MYSQLI_ASSOC);
+    $VehiculeSpec_Id = $row2['VehiculeSpec_Id'];
 
     
-    
-    
+   
+
     
     
 
@@ -32,6 +32,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <title>C.R Luxury</title>
         <link rel="stylesheet" href="CarRent.css">
         <link rel="stylesheet" href="style.css">
@@ -72,21 +73,24 @@
                 
            } else {header("location:Car.php?carnotavailable=" . urlencode(base64_encode("This vehicule isn't available anymore"))); } ?>
     
+
         
-        <form  method="POST" >
+        <form  method="POST" action="CarReservation.php" >
         
             <div class="identification">
                 
                 
                   <label><b>Departure Date</b></label>
-                  <input type="date" placeholder="Starting date"  data-date-inline-picker="true" name="Sname" /> 
+                  <input type="hidden" name="User_Id" value="<?php echo $User_Id;?>">
+                  <input type="hidden" name="VehiculeSpec_Id" value="<?php echo $VehiculeSpec_Id;?>">
+                  <input id="datefield" type="date" placeholder="Starting date" min='1899-01-01'   name="Sdate"  required/> 
                   <label><b>Ending Date</b></label>
-                  <input type="date" placeholder="Starting date"  data-date-inline-picker="true" name="Ename" /> 
+                  <input type="date" id="datefield2" max='1997-13-13'  placeholder="Starting date"  name="Edate" required/> 
                   <label><b>Pickup Point</b></label>
                                 <?php 
                 $parking = mysqli_query($conn,"SELECT * from flotte WHERE Flotte_Size < 50 ");
                 if(mysqli_num_rows($parking)){
-                echo "<select name='Flotte_NamePickup' required>";
+                echo "<select name='Reservation_Pickup' required>";
                 
                 while($parkingtable = mysqli_fetch_array($parking)){
                     
@@ -97,24 +101,49 @@
                 <?php $parking = mysqli_query($conn,"SELECT * from flotte WHERE Flotte_Size < 50 ");
                 if(mysqli_num_rows($parking)){
                     echo "</select>"; 
-                echo "<select name='Flotte_NameReturn' required>";
+                echo "<select name='Reservation_Return' required>";
                
                 while($parkingtable = mysqli_fetch_array($parking)){
                     
                        echo"<option value='".$parkingtable['Flotte_Name']."'>".$parkingtable['Flotte_Name']."</option>";
                     } 
                     echo "</select>"; 
-} 
+                
+}                   
                
         ?>        
                 
                   <label><b>Tick this box for the car insurance. Are taken in consideration accidents,theft,degradations. ( 10€/day, see more at the agency)</b></label> 
                 
-                 <input type="checkbox" value="1" id="squaredThree" name="check" checked />
+                 <input type="checkbox" value="1" id="squaredThree" name="assurance" checked />
                  <button type="submit" name="rentthiscar" value="rentthiscar" >Rent this car !</button>
-                    
-                      
-                    
+              <script>   
+        $(document).ready(function () {  
+                var today = new Date();
+var today2 = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var aa = today.getMonth()+2;
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+if(aa<10){
+        aa='0'+aa
+    }
+today = yyyy+'-'+mm+'-'+dd;
+today2 = yyyy + '-' + aa +'-'+dd;
+document.getElementById("datefield").setAttribute("min",today);
+document.getElementById("datefield2").setAttribute("max",today2);
+document.getElementById("datefield2").setAttribute("min",today);
+
+
+
+
+});</script>   
         
 
           
