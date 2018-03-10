@@ -4,8 +4,8 @@
       include("Reset_PicturesID.php");
             
     
-    if(isset($_GET['carid'])){$Car_Id = $_GET['carid'];}
-    $sql = "SELECT * FROM vehiculespec WHERE Vehicule_Rented =0 AND Car_Id='$Car_Id'";
+    if(isset($_GET['motoid'])){$Moto_Id = $_GET['motoid'];}
+    $sql = "SELECT * FROM vehiculespec WHERE Vehicule_Rented =0 AND Moto_Id='$Moto_Id'";
     $store_result = mysqli_query($conn,$sql);
 
     
@@ -14,7 +14,7 @@
     $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $User_Id = $row['User_Id'];
 
-    $ses_sql2 = mysqli_query($conn,"select VehiculeSpec_Id from vehiculespec where Car_Id='$Car_Id' AND Vehicule_Rented ='0' ");
+    $ses_sql2 = mysqli_query($conn,"select VehiculeSpec_Id from vehiculespec where Moto_Id='$Moto_Id' AND Vehicule_Rented ='0' ");
     $row2 = mysqli_fetch_array($ses_sql2,MYSQLI_ASSOC);
     $VehiculeSpec_Id = $row2['VehiculeSpec_Id'];
 
@@ -73,13 +73,13 @@
             {
             
                 
-           } else {header("location:Car.php?carnotavailable=" . urlencode(base64_encode("This vehicule isn't available anymore."))); } 
+           } else {header("location:Moto.php?carnotavailable=" . urlencode(base64_encode("This vehicule isn't available anymore."))); } 
     
         if($Reservation_State==1){
-        header("location:Car.php?carnotavailable=" . urlencode(base64_encode("You already have a reservation running."))); 
+        header("location:Moto.php?carnotavailable=" . urlencode(base64_encode("You already have a reservation running."))); 
         } else{
          ?>
-        <form  method="POST" action="CarReservation.php" target="_self">
+        <form  method="POST" action="MotoRent.php" target="_blank">
         
             <div class="identification">
                 
@@ -118,10 +118,10 @@
                
          ?>       
                 
-                  <label><b>Tick this box for the car insurance. Are taken in consideration accidents,theft,degradations. ( 10€/day, see more at the agency)</b></label> 
+                  <label><b>Tick this box for the vehicule insurance. Are taken in consideration accidents,theft,degradations. ( 10€/day, see more at the agency)</b></label> 
                 
                  <input type="checkbox" value="1" id="squaredThree" name="assurance" checked />
-                 <button type="submit" name="rentthiscar" value="rentthiscar" >Rent this car !</button>
+                 <button type="submit" name="rentthiscar" value="rentthiscar" >Rent this moto !</button>
               <script>   
         $(document).ready(function () {  
                 var today = new Date();

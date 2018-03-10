@@ -24,7 +24,7 @@
             $carstate = $_POST['State'];
             $fuelstate = $_POST['Fuel'];
             $endingdate = $_POST['Edate'];
-            $query = "UPDATE reservation SET Reservation_FuelLevel='$fuelstate',Reservation_CarState='$carstate', Reservation_DateEnd='$endingdate' , Reservation_State='0' WHERE User_Id = '$user_id' ";
+            $query = "UPDATE reservation SET Reservation_FuelLevel='$fuelstate',Reservation_CarState='$carstate', Reservation_DateEnd='$endingdate' , Reservation_State='0' WHERE User_Id = '$user_id' AND Reservation_State=0 ";
 
 
 

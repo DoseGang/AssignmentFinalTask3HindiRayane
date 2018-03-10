@@ -3,7 +3,7 @@
 <?php include("database.php");
       
       
-     $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
+    $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
     $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Login.Php";
     $home_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Home.php";
     $logout_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Logout.php";
@@ -15,7 +15,8 @@
     $ses_sql = mysqli_query($conn,"select User_Username from user where User_Username='$user_check' ");
     $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $login_session = $row['User_Username'];
-
+    
+    
     function search_keywords_id()
     {
         include("database.php");
@@ -25,7 +26,7 @@
         {
             
            
-            $get_output = "SELECT * FROM gallery WHERE (Gallery_PictureID LIKE '%".$user_input."%') OR (Gallery_PictureDescription LIKE '%".$user_input."%') ";
+            $get_output = "SELECT * FROM vehicule WHERE (Vehicule_Brand LIKE '%".$user_input."%') OR (Vehicule_Name LIKE '%".$user_input."%') ";
             $get_output= htmlspecialchars($get_output);
              
             $store_output = mysqli_query($conn, $get_output);
@@ -33,21 +34,19 @@
             if($row_count > 0){
                 while ($row_of_searchmatch = mysqli_fetch_array($store_output))
                 {
-                     echo ("<div class='visionofart'>");
-                    echo ("<a target='_blank' href=". $row_of_searchmatch['Gallery_PictureURL'] .">");
-                     echo ("<img src=" . $row_of_searchmatch['Gallery_PictureURL']. " alt=". $row_of_searchmatch['Gallery_PictureDescription'] ." width='600' ");
-                    echo ("</a> <div class='description'>".$row_of_searchmatch['Gallery_PictureDescription']." #".$row_of_searchmatch['Gallery_PictureID']."</div></div>");        
+                    echo ("<div class='visionofart'>");
+                    echo ("<a target='_blank' href=". $row_of_searchmatch['Vehicule_PictureURL'] .">");
+                    echo ("<img src=" . $row_of_searchmatch['Vehicule_PictureURL']. " alt=". $row_of_searchmatch['Vehicule_Description'] ." width='600' ");
+                    echo ("</a> <div class='description'>".$row_of_searchmatch['Vehicule_Description']." #</div></div>");        
                   
                 }
-            }else header("Location: Car.php?msg5=" . urlencode(base64_encode("No matches found.")));
+            }else header("Location: Moto.php?msg5=" . urlencode(base64_encode("No matches found.")));
              
         }
                 
             
      }
               
-      
-
     
 ?>
 <html lang="en">
@@ -63,29 +62,29 @@
     
     <body>
        <a name="top"></a>
-        <h1 class = "topborder"  id = "topbordertitle">Motorcycles</h1>
+        <h1 class = "topborder"  id = "topbordertitle">Motos</h1>
         <input type = "checkbox" id="menuToggle">
         <label for="menuToggle" class="menu-icon">&#9776;</label>
         <header>
             <div id="brand"><?php if(isset($_GET['msg5'])){
-    echo base64_decode(urldecode($_GET['msg5'])); }else echo "Explore Me"; ?>
+    echo base64_decode(urldecode($_GET['msg5'])); } if (isset($_GET['carnotavailable'])){echo base64_decode(urldecode($_GET['carnotavailable']));} else echo "Explore Me"; ?>
             </div>
             <div class="pagebg"></div>
             <form action="" method="GET" target="_blank" >
-                <input type="text"  name="searchtext" placeholder="ID/Word of car to search. Press ENTER when done.">
+                <input type="text"  name="searchtext" placeholder="ID/Word of Moto to search. Press ENTER when done.">
                 
                 
             </form>
             
         </header>
             
-         <nav class ="menu">
+        <nav class ="menu">
         <ul>
             
            <?php  if(isset($_SESSION['login_user'])){
             echo  "<li><a href=".$loggedin_address.">HOME</a></li>";
             echo "<li><a href=".$logout_address.">LOGOUT</a></li>";
-            echo "<li><a href=".$car_address.">CARS</a></li>";
+            echo "<li><a href=".$moto_address.">CARS</a></li>";
 
 } else {
             echo "<li><a href=".$home_address.">HOME</a></li>";
@@ -112,7 +111,7 @@
             </ul>
         
         </nav>
-         <button onclick="location.href ='Moto.php';" id="button" title="Go to top">Back to Top</button>
+         <a><button class="buttontotop" onclick="location.href ='#top';"  title="Go to top">Back to Top</button></a>
         
        <?php 
        
@@ -124,18 +123,29 @@
                
                 $get_table = "SELECT * FROM vehicule where Vehicule_Type=0 ORDER BY Vehicule_Id ASC";
                 $store_table = mysqli_query($conn, $get_table); //Creates a table for every pictures containing their data
-               
+                
+                
+                
         
                 //We go through the data of each line of our table
         
                 while ($row = mysqli_fetch_array($store_table)) //as long as we have a line in our table
-                    {
-                     
-                              
+                     {
+                          
+                  
+
+                    
+                             // <a href="page2.php?varname=<?php echo $var_value
                     echo ("<div class='visionofart'>");
-                    echo ("<a target='_blank' href=". $row['Vehicule_PictureURL'] .">");
-                     echo ("<img src=" . $row['Vehicule_PictureURL']. " alt=". $row['Vehicule_Name'] ." width='100%' ");
-                    echo ("</a> <div class='description'>".$row['Vehicule_Brand']." #".$row['Vehicule_Name']."</div></div>");                  
+                    $Vehicule_Id = $row['Vehicule_Id'];
+                    $Vehicule_Url=$row['Vehicule_PictureURL'];
+                    $Vehicule_Brand=$row['Vehicule_Brand'];
+                    $Vehicule_Name=$row['Vehicule_Name'];
+                    echo ("<a target='_blank' href='Motodetails.php?vehicule_id=$Vehicule_Id&vehicule_url=$Vehicule_Url&Vehicule_name=$Vehicule_Name&Vehicule_brand=$Vehicule_Brand'>");
+                    
+                    echo ("<img src=" . $row['Vehicule_PictureURL']. " alt=". $row['Vehicule_Name'] ." width='100%' ");
+                    echo ("</a> <div class='description'>".$row['Vehicule_Brand']." ".$row['Vehicule_Name']."
+                    <br />".$row['Vehicule_Description']."</div></div>");                  
                     
                     } 
             

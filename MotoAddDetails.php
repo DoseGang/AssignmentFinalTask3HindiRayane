@@ -108,40 +108,27 @@
         
         </nav>
         
-        <form  method="POST" action= "AddPictures.php?type=<?php echo $type ?>&vehicule_id2=<?php echo $vehicule_id2 ?>" >
+        <form  method="POST" action= "AddPictures.php?vehicule_id2=<?php echo $vehicule_id2 ?>" >
         
             <div class="identification">
                 <?php if(isset($msg)){
-    echo $msg; } else echo "<label><b>Add Car Details</b></label>"; 
+    echo $msg; } else echo "<label><b>Add Moto Details</b></label>"; 
                 
-      
-              if($type==1){
+                  
 ?>
                  
             
             
             
-                <input type="text" placeholder="Enter Passenger Capacity"  maxlength="200" name="Capacity" required>
-                <input type="text" placeholder="Gearbox Type"  maxlength="100" 
-                name="Gearbox" required>
-                <input type="text" placeholder="Air Conditioning" name="AirConditioning" required>
-                <input type="text" placeholder="Luggage Size" name="LuggageSize" required>
-                <input type="text" placeholder="License Needed" name="LicenseNeeded" required>
-                <input type="text" placeholder="Fuel Type" name="FuelType" required>
-                <input type="text" placeholder="Vehicule Plate" name="plate" required>
-                <input type="text" placeholder="Kilometers" name="kilometers" required>
-                <input type="number" step="0.01" placeholder="Price per day" name="Price" required>
-        <?php }else {  ?>
                 <input type="text" placeholder="Helmet included 0/1"  maxlength="200" name="Helmet" required>
                 <input type="text" placeholder="Gloves Included 0/1"  maxlength="100" 
                 name="Gloves" required>
                 <input type="text" placeholder="Minimum Experience" name="experience" required>
-                <input type="text" placeholder="Cylinder" name="Cylinder" required>
+                <input type="text" placeholder="Luggage Size" name="LuggageSize" required>
                 <input type="text" placeholder="License Needed" name="LicenseNeeded" required>
                 <input type="text" placeholder="Vehicule Plate" name="plate" required>
                 <input type="text" placeholder="Kilometers" name="kilometers" required>
                 <input type="number" step="0.01" placeholder="Price per day" name="Price" required>
-            <?php } ?>
                 
            <button type="submit" name="type" value="submit" >SUBMIT</button>
            
@@ -181,5 +168,3 @@
 
 
 </html>
-
-

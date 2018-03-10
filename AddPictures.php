@@ -4,8 +4,15 @@
       include("Reset_PicturesID.php");
 
 
-if($_SERVER ["REQUEST_METHOD"]== "POST"){
+if($_SERVER ["REQUEST_METHOD"]== "POST" ){
     
+        
+         if(isset($_GET['vehicule_id2'])){
+            $vehicule_id2 = $_GET['vehicule_id2'];}
+        if(isset($_GET['type'])){
+    $type = $_GET['type'];
+    if($type ==1){
+        
         $capacity = $_POST['Capacity'];   
         $gearboxtype = $_POST['Gearbox'];
         $airconditioning =$_POST['AirConditioning'];
@@ -15,26 +22,51 @@ if($_SERVER ["REQUEST_METHOD"]== "POST"){
         $price = $_POST['Price'];
         $plate = $_POST['plate'];
         $kilometers = $_POST['kilometers'];
-        if(isset($_GET['vehicule_id2'])){$vehiculeid2 = $_GET['vehicule_id2'];}
+        $sql2 = "INSERT INTO `car` (`Car_Id`, `Vehicule_Id`, `Car_Capacity`, `Car_Gearbox`, `Car_AirConditioning`, `Car_LuggageSize`, `Car_LicenseType`, `Car_FuelType`,Car_Price) VALUES (NULL,'$vehicule_id2', '$capacity', '$gearboxtype','$airconditioning','$luggagesize','$licenseneeded','$fueltype','$price')";
     
-        $sql2 = "INSERT INTO `car` (`Car_Id`, `Vehicule_Id`, `Car_Capacity`, `Car_Gearbox`, `Car_AirConditioning`, `Car_LuggageSize`, `Car_LicenseType`, `Car_FuelType`,Car_Price) VALUES (NULL,'$vehiculeid2', '$capacity', '$gearboxtype','$airconditioning','$luggagesize','$licenseneeded','$fueltype','$price')";
-    
-        $get_car_id = "SELECT Car_Id FROM car WHERE Car_Id = '$vehiculeid2' ";
+        $get_car_id = "SELECT Car_Id FROM car WHERE Vehicule_Id = '$vehicule_id2' ";
         $resultcarid = mysqli_query($conn,$get_car_id);
         $row =mysqli_fetch_array($resultcarid);
         $car_id = $row['Car_Id'];
     
-        $sql3 = "INSERT INTO vehiculespec (VehiculeSpec_Plate,VehiculeSpec_Kilometers,Car_Id) VALUES(NULL,'$plate','$kilometers','$car_id')";
+        $sql3 = "INSERT INTO vehiculespec (VehiculeSpec_Plate,VehiculeSpec_Kilometers,Vehicule_Rented,Moto_Id,Car_Id)VALUES('$plate','$kilometers',0,NULL,'$car_id')";
+        
 
 
         
             if ($conn->query($sql2) == TRUE && $conn->query($sql3) == TRUE) {
             
-                 $msg = "Vehicule Added.";
+                    $msg = "Vehicule Added.";
+                }
+            }  else if($type ==0){
+            $helmet = $_POST['Helmet'];
+            $Gloves = $_POST['Gloves'];
+            $Cylinder = $_POST['Cylinder'];
+            $License = $_POST['LicenseNeeded'];
+            $Plate = $_POST['plate'];
+            $Kilometers = $_POST['kilometers'];
+            $Price = $_POST['Price'];
+            $experience =$_POST['experience'];
+        $sql5 = "INSERT INTO motorcycle (Motorcycle_Id, Motorcycle_Cylinder, Motorcycle_Helmet, Motorcycle_Gloves, Motorcycle_License, Motorcycle_ExperienceMin,Motorcycle_Price,Vehicule_Id) VALUES (NULL, '$Cylinder', '$helmet',  '$Gloves', '$License', '$experience','$Price','$vehicule_id2')";
+       
+    
+        $get_car_id = "SELECT Motorcycle_Id FROM motorcycle WHERE Vehicule_Id = '$vehicule_id2' ";
+        $resultcarid = mysqli_query($conn,$get_car_id);
+        $row =mysqli_fetch_array($resultcarid);
+        $car_id = $row['Motorcycle_Id'];
+    
+        $sql6 = "INSERT INTO vehiculespec(Moto_Id,VehiculeSpec_Plate,VehiculeSpec_Kilometers,Vehicule_Rented,Car_Id) VALUES('$car_id','$Plate','$Kilometers',0,NULL)";
+
+
+        
+            if ($conn->query($sql5) == TRUE && $conn->query($sql6) == TRUE ) {
             
-        }
+                    $msg = "Vehicule Added.";
+                }
+    }
+    }
 }
- 
+
  
     
 
