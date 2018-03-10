@@ -4,8 +4,8 @@
       include("Reset_PicturesID.php");
             
     
-    if(isset($_GET['carid'])){$Car_Id = $_GET['carid'];}
-    $sql = "SELECT * FROM vehiculespec WHERE Vehicule_Rented =0 AND Car_Id='$Car_Id'";
+    if(isset($_GET['vehiculeid'])){$vehiculeid = $_GET['vehiculeid'];}
+    $sql = "SELECT * FROM vehiculespec WHERE Vehicule_Rented =0 AND Vehicule_Id='$vehiculeid'";
     $store_result = mysqli_query($conn,$sql);
 
     
@@ -14,7 +14,7 @@
     $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $User_Id = $row['User_Id'];
 
-    $ses_sql2 = mysqli_query($conn,"select VehiculeSpec_Id from vehiculespec where Car_Id='$Car_Id' AND Vehicule_Rented ='0' ");
+    $ses_sql2 = mysqli_query($conn,"select VehiculeSpec_Id from vehiculespec where Vehicule_Id='$vehiculeid' AND Vehicule_Rented ='0' ");
     $row2 = mysqli_fetch_array($ses_sql2,MYSQLI_ASSOC);
     $VehiculeSpec_Id = $row2['VehiculeSpec_Id'];
 
@@ -58,13 +58,30 @@
         </header>
            
         <nav class ="menu">
-        <ul>
+                <ul>
             
-            <li><a href="Loggedin.php">HOME</a></li>
-            <li><a href="Logout.Php">LOGOUT</a></li>
+            <li><a class="active" href="LoggedIn.php">HOME</a></li>
+            <li><a href="Logout.php">LOGOUT</a></li>
             <li><a href="Car.php">CAR</a></li>
-            <li><a href="RemovePictures.php">REMOVE PICTURES</a></li>
+            <li><a href="Moto.php">MOTORCYCLES</a></li>
+            <li><a href="informations.php">MY INFORMATION</a></li>
+            <li><a href="ReturnVehicule.php">RETURN VEHICULE</a></li>
+            <?php $user_check = $_SESSION['login_user'];
+   
+    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' ");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $login_session = $row['User_Username'];
+    $login_state = $row['User_State']; 
+
+    if($row['User_State']==1){
+            echo "<li><a href="; echo"AddPictures.php"; echo">ADD CARS</a></li>";
+            echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVE CARS</a></li>";
+            }
+            if($row['User_State']==2){
+            echo "<li><a href="; echo"parking.php"; echo">PARKING</a></li>";
             
+            }
+            ?>
             </ul>
         
         </nav>

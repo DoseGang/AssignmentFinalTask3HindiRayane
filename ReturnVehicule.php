@@ -12,13 +12,12 @@
   
        
         
-         $getuser_Id = "SELECT User_Id from user WHERE User_Username ='$login_session'";
-        $storeuser_id = mysqli_query($conn,$getuser_Id);
-        $storeuser_id2 = mysqli_fetch_array($storeuser_id);
-        $user_id = $storeuser_id2['User_Id'];
-        $sql3 = "SELECT * FROM reservation WHERE User_Id='$user_id' AND Reservation_State='1' ";
+        $ses_sql = mysqli_query($conn,"select User_Id from user where User_Username='$user_check' ");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $User_Id = $row['User_Id'];
+        $sql3 = "SELECT * FROM reservation WHERE User_Id='$User_Id' && Reservation_State= 1 ";
         $up = mysqli_query($conn,$sql3);
-        $row = mysqli_fetch_array($up);
+        $row2 = mysqli_fetch_array($up);
         
          if($_SERVER ["REQUEST_METHOD"]== "POST"){
             $carstate = $_POST['State'];
@@ -63,32 +62,30 @@ if(mysqli_query($conn,$query) == TRUE){
         </header>
             
         <nav class ="menu">
-        <ul>
+                <ul>
+            
             <li><a class="active" href="LoggedIn.php">HOME</a></li>
             <li><a href="Logout.php">LOGOUT</a></li>
             <li><a href="Car.php">CAR</a></li>
             <li><a href="Moto.php">MOTORCYCLES</a></li>
             <li><a href="informations.php">MY INFORMATION</a></li>
-            
-            <?php 
-        
-    $user_check = $_SESSION['login_user'];
-    $ses_sql = mysqli_query($conn,"select * from user WHERE User_Username='$user_check' ");
-    $rowstate = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-    $login_session = $rowstate['User_Username'];
-    $login_state = $rowstate['User_State']; 
+            <li><a href="ReturnVehicule.php">RETURN VEHICULE</a></li>
+            <?php $user_check = $_SESSION['login_user'];
    
-    if($login_state==1){
+    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' ");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $login_session = $row['User_Username'];
+    $login_state = $row['User_State']; 
+
+    if($row['User_State']==1){
             echo "<li><a href="; echo"AddPictures.php"; echo">ADD CARS</a></li>";
             echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVE CARS</a></li>";
             }
-            if($login_state==2){
+            if($row['User_State']==2){
             echo "<li><a href="; echo"parking.php"; echo">PARKING</a></li>";
             
             }
-    ?>
-            
-            
+            ?>
             </ul>
         
         </nav>
@@ -96,7 +93,7 @@ if(mysqli_query($conn,$query) == TRUE){
         
         
        
-             <?php if($row['Reservation_State'] == 1){ ?>
+             <?php if($row2['Reservation_State'] == 1){ ?>
                    <form  method="POST" action="ReservationFacture.php" target="_blank">
             <label><b>Please fill the returning informations. All the informations are double checked by the agency. If needed, we have all the rights to change any values.   </b></label>
             <div class="return">
@@ -116,6 +113,13 @@ if(mysqli_query($conn,$query) == TRUE){
                       <option value="1">~25%</option>
                       <option value="2">~50%</option>
                       <option value="3">~75%</option>
+                  </select>
+                    
+                  <select name="Parking" required>
+                      <option value="0">Empty</option>
+                      <option value="1">Jules Joffrin</option>
+                      <option value="2">Asnieres</option>
+                      <option value="3">BNF</option>
                   </select>
                   
                      

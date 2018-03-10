@@ -4,8 +4,8 @@
       include("Reset_PicturesID.php");
             
     
-    if(isset($_GET['motoid'])){$Moto_Id = $_GET['motoid'];}
-    $sql = "SELECT * FROM vehiculespec WHERE Vehicule_Rented =0 AND Moto_Id='$Moto_Id'";
+     if(isset($_GET['vehiculeid'])){$vehiculeid = $_GET['vehiculeid'];}
+    $sql = "SELECT * FROM vehiculespec WHERE Vehicule_Rented =0 AND Vehicule_Id='$vehiculeid'";
     $store_result = mysqli_query($conn,$sql);
 
     
@@ -14,7 +14,7 @@
     $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
     $User_Id = $row['User_Id'];
 
-    $ses_sql2 = mysqli_query($conn,"select VehiculeSpec_Id from vehiculespec where Moto_Id='$Moto_Id' AND Vehicule_Rented ='0' ");
+    $ses_sql2 = mysqli_query($conn,"select VehiculeSpec_Id from vehiculespec where Vehicule_Id='$vehiculeid' AND Vehicule_Rented ='0' ");
     $row2 = mysqli_fetch_array($ses_sql2,MYSQLI_ASSOC);
     $VehiculeSpec_Id = $row2['VehiculeSpec_Id'];
 

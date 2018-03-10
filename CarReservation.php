@@ -23,12 +23,12 @@
         $User_Id = $_POST['User_Id'];
         $VehiculeSpec_Id = $_POST['VehiculeSpec_Id'];
         
-       $sql1 = "SELECT Car_Id from vehiculespec where VehiculeSpec_Id='$VehiculeSpec_Id'";
+       $sql1 = "SELECT Vehicule_Id from vehiculespec where VehiculeSpec_Id='$VehiculeSpec_Id'";
       $storesql1 = mysqli_query($conn,$sql1);
       $valuesql1 = mysqli_fetch_array($storesql1);
-      $value = $valuesql1['Car_Id'];
+      $value = $valuesql1['Vehicule_Id'];
       
-      $sqlcarprice = "SELECT Car_Price from car where Car_Id ='$value'";
+      $sqlcarprice = "SELECT Car_Price from car where Vehicule_Id ='$value'";
       $storeprice = mysqli_query($conn,$sqlcarprice);
       $valueprice = mysqli_fetch_array($storeprice);
       $value2 =   $valueprice['Car_Price'];

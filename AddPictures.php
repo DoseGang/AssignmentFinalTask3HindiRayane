@@ -24,12 +24,9 @@ if($_SERVER ["REQUEST_METHOD"]== "POST" ){
         $kilometers = $_POST['kilometers'];
         $sql2 = "INSERT INTO `car` (`Car_Id`, `Vehicule_Id`, `Car_Capacity`, `Car_Gearbox`, `Car_AirConditioning`, `Car_LuggageSize`, `Car_LicenseType`, `Car_FuelType`,Car_Price) VALUES (NULL,'$vehicule_id2', '$capacity', '$gearboxtype','$airconditioning','$luggagesize','$licenseneeded','$fueltype','$price')";
     
-        $get_car_id = "SELECT Car_Id FROM car WHERE Vehicule_Id = '$vehicule_id2' ";
-        $resultcarid = mysqli_query($conn,$get_car_id);
-        $row =mysqli_fetch_array($resultcarid);
-        $car_id = $row['Car_Id'];
+       
     
-        $sql3 = "INSERT INTO vehiculespec (VehiculeSpec_Plate,VehiculeSpec_Kilometers,Vehicule_Rented,Moto_Id,Car_Id)VALUES('$plate','$kilometers',0,NULL,'$car_id')";
+        $sql3 = "INSERT INTO vehiculespec (VehiculeSpec_Plate,VehiculeSpec_Kilometers,Vehicule_Rented,Vehicule_Id)VALUES('$plate','$kilometers',0,'$vehicule_id2')";
         
 
 
@@ -55,7 +52,7 @@ if($_SERVER ["REQUEST_METHOD"]== "POST" ){
         $row =mysqli_fetch_array($resultcarid);
         $car_id = $row['Motorcycle_Id'];
     
-        $sql6 = "INSERT INTO vehiculespec(Moto_Id,VehiculeSpec_Plate,VehiculeSpec_Kilometers,Vehicule_Rented,Car_Id) VALUES('$car_id','$Plate','$Kilometers',0,NULL)";
+       $sql6 = "INSERT INTO vehiculespec (VehiculeSpec_Plate,VehiculeSpec_Kilometers,Vehicule_Rented,Vehicule_Id)VALUES('$Plate','$Kilometers',0,'$vehicule_id2')";
 
 
         
@@ -102,7 +99,7 @@ if($_SERVER ["REQUEST_METHOD"]== "POST" ){
             
             <li><a href="Loggedin.php">HOME</a></li>
             <li><a href="Logout.Php">LOGOUT</a></li>
-            <li><a href="Car.php">CAR</a></li>
+            <li><a href="Car.php">CARS</a></li>
             <li><a href="Moto.php">MOTORCYCLES</a></li>
             <li><a href="RemovePictures.php">REMOVE CARS</a></li>
             

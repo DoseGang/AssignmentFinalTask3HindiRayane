@@ -79,45 +79,49 @@ function deletecar(){
         <input type = "checkbox" id="menuToggle">
         <label for="menuToggle" class="menu-icon">&#9776;</label>
         <header>
-            <div id="brand">Remove Car
+            <div id="brand">Remove Vehicule
             </div>
             <div class="removingpagebg"></div>
         </header>
            
         <nav class ="menu">
-        <ul>
+                <ul>
             
-           <?php  
-            echo  "<li><a href=".$loggedin_address.">HOME</a></li>";
-            echo "<li><a href=".$logout_address.">LOGOUT</a></li>";
-            echo "<li><a href=".$moto_address.">MOTORCYCLES</a></li>";
-            echo "<li><a href=".$car_address.">CARS</a></li>";
-            echo "<li><a href="; echo"AddPictures.php"; echo">ADD PICTURES</a></li>";
-
-            
-             @$user_check = $_SESSION['login_user'];
+            <li><a class="active" href="LoggedIn.php">HOME</a></li>
+            <li><a href="Logout.php">LOGOUT</a></li>
+            <li><a href="Car.php">CAR</a></li>
+            <li><a href="Moto.php">MOTORCYCLES</a></li>
+            <li><a href="informations.php">MY INFORMATION</a></li>
+            <li><a href="ReturnVehicule.php">RETURN VEHICULE</a></li>
+            <?php $user_check = $_SESSION['login_user'];
    
-    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' AND User_State =1");
-    $rowstate = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-    $login_session = $rowstate['User_Username'];
-    $login_state = $rowstate['User_State']; 
+    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' ");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $login_session = $row['User_Username'];
+    $login_state = $row['User_State']; 
 
-  
-            ?>
+    if($row['User_State']==1){
+            echo "<li><a href="; echo"AddPictures.php"; echo">ADD CARS</a></li>";
+            echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVE CARS</a></li>";
+            }
+            if($row['User_State']==2){
+            echo "<li><a href="; echo"parking.php"; echo">PARKING</a></li>";
             
+            }
+            ?>
             </ul>
         
         </nav>
-        <form  method="POST" action = "RemovePictures.php">
+        <form  method="POST" action = "removed.php">
         
             <div class="identification">
            <?php 
                     if(isset($errormsg)) {echo $errormsg;} 
                 else if(isset($msg)) {echo $msg;}
-                else echo "<label><b>ID of the picture to Delete</b></label>";
+                else echo "<label><b>ID of the vehicule to Delete</b></label>";
         
         ?>
-                <input type="number" placeholder="Enter ID" name="id"  required>
+                <input type="number" placeholder="Enter ID" name="vehid"  required>
            
             <button type="submit">Delete</button>
             </div>

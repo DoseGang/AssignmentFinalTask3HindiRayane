@@ -118,8 +118,7 @@
         
          
                  
-            
-               
+             
                 $get_table = "SELECT * FROM motorcycle where Vehicule_Id='$Vehicule_Id' ";
                 $store_table = mysqli_query($conn, $get_table); //Creates a table for every pictures containing their data
                
@@ -128,7 +127,7 @@
         
                 if ($row = mysqli_fetch_array($store_table)) //as long as we have a line in our table
                     {
-                     $Motorcycle_id = $row['Motorcycle_Id'];
+                     $vehiculeid = $row['Vehicule_Id'];
                               
                   echo ("<div class='visionofart'>");
                   echo ("<img src=" .$Vehicule_Url." alt=".$Vehicule_Url." width='100%'  
@@ -184,8 +183,7 @@
                     } 
         
               ?>
-        <form method="POST" action="MotoReserve.php?motoid=<?php echo 
-    '$Motorcycle_id' ?>">
+        <form method="POST" action="MotoReserve.php?vehiculeid=<?php echo $vehiculeid ?>">
             
             
             <a ><button class='buttontoRent'type='submit'  title='Rent Car'>Rent Moto</button></a>

@@ -129,6 +129,7 @@
         
                 //We go through the data of each line of our table
         
+               
                 while ($row = mysqli_fetch_array($store_table)) //as long as we have a line in our table
                      {
                           
@@ -154,10 +155,16 @@
               
                 
               ?>
+             
+          
+              
+                 
+              
+
    
         
       
-                
+          
             <footer>
     
             
