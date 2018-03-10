@@ -79,7 +79,7 @@ function deletecar(){
         <input type = "checkbox" id="menuToggle">
         <label for="menuToggle" class="menu-icon">&#9776;</label>
         <header>
-            <div id="brand">Remove Car
+            <div id="brand">Remove Vehicule
             </div>
             <div class="removingpagebg"></div>
         </header>
@@ -112,16 +112,16 @@ function deletecar(){
             </ul>
         
         </nav>
-        <form  method="POST" action = "RemovePictures.php">
+        <form  method="POST" action = "removed.php">
         
             <div class="identification">
            <?php 
                     if(isset($errormsg)) {echo $errormsg;} 
                 else if(isset($msg)) {echo $msg;}
-                else echo "<label><b>ID of the picture to Delete</b></label>";
+                else echo "<label><b>ID of the vehicule to Delete</b></label>";
         
         ?>
-                <input type="number" placeholder="Enter ID" name="id"  required>
+                <input type="number" placeholder="Enter ID" name="vehid"  required>
            
             <button type="submit">Delete</button>
             </div>
