@@ -7,51 +7,19 @@
     $home_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Home.php";
     $logout_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Logout.php";
     $moto_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Moto.php"; 
+if($_SERVER ["REQUEST_METHOD"]== "POST"){
+        $getuser_Id = "SELECT User_Id from user WHERE User_Username ='$login_session'";
+        $storeuser_id = mysqli_query($conn,$getuser_Id);
+        $storeuser_id2 = mysqli_fetch_array($storeuser_id);
+        $user_id = $storeuser_id2['User_Id'];
+        $carstate = $_POST['State'];
+        $fuelstate = $_POST['Fuel'];
+        $endingdate = $_POST['Edate'];
+        
             
-  if($_SERVER ["REQUEST_METHOD"]== "POST"){
-    
-        $Startingdate = $_POST['Sdate']; 
-        $Startingdate2 = strtotime("$Startingdate");
-        $Endingdate = $_POST['Edate'];
-        $Endingdate2 = strtotime("$Endingdate");
-        $timeDiff = abs($Endingdate2 - $Startingdate2);
-        $numberofdays = $timeDiff/86400;
-        $numberofdays = floatval($numberofdays);
-        $returnpoint =$_POST['Reservation_Return'];
-        $pickuppoint =$_POST['Reservation_Pickup'];
-        if(isset($_POST['assurance'])){$assurance=$_POST['assurance'];}else $assurance=0;
-        $User_Id = $_POST['User_Id'];
-        $VehiculeSpec_Id = $_POST['VehiculeSpec_Id'];
-        
-       $sql1 = "SELECT Car_Id from vehiculespec where VehiculeSpec_Id='$VehiculeSpec_Id'";
-      $storesql1 = mysqli_query($conn,$sql1);
-      $valuesql1 = mysqli_fetch_array($storesql1);
-      $value = $valuesql1['Car_Id'];
-      
-      $sqlcarprice = "SELECT Car_Price from car where Car_Id ='$value'";
-      $storeprice = mysqli_query($conn,$sqlcarprice);
-      $valueprice = mysqli_fetch_array($storeprice);
-      $value2 =   $valueprice['Car_Price'];
-      $value2 = floatval($value2);
-      $assuranceprice = $numberofdays*10;
-      $rentprice = $numberofdays*$value2;
-      $reservationprice = $assuranceprice + $numberofdays*$value2 ;
-      
-      
-        $sql2 = "INSERT INTO `reservation` (`Reservation_Id`,`User_ID`, `VehiculeSpec_Id`,`Reservation_DateStart`, `Reservation_DateEnd`, `Reservation_PickingPoint`, `Reservation_ReturnPoint`, `Reservation_CarState`, `Reservation_FuelLevel`, `Reservation_Assurance`, `Reservation_State`,Reservation_Price) VALUES (NULL,'$User_Id','$VehiculeSpec_Id','$Startingdate', '$Endingdate', '$pickuppoint', '$returnpoint', NULL, NULL, $assurance, '1','$reservationprice')";
-      
-        
-     
-    
 
 
-        
-            if ( $storesql2 = mysqli_query($conn,$sql2) ) {
-                
-                 $msg = "Reservation Confirmed.";
-                
-            
-        }
+
      
 }
 
@@ -120,18 +88,40 @@
        
          if(isset($_GET['searchtext'])){search_keywords_id();} 
         
-          $sql3 = "SELECT * FROM reservation WHERE User_Id='$User_Id' AND VehiculeSpec_Id='$VehiculeSpec_Id' AND Reservation_State='1'";
+        
+    $sql3 = "SELECT * FROM reservation WHERE User_Id='$user_id' AND Reservation_State='1'";
     $storereservation = mysqli_query($conn,$sql3);
         
         
  
-              if( $table= mysqli_fetch_array($storereservation)){
-                    
-                     $reservationid = $table['Reservation_Id'];
-                              
+              if($table= mysqli_fetch_array($storereservation)){
+      $Startingdate = $table['Reservation_DateStart']; 
+      $Startingdate2 = strtotime("$Startingdate");
+      $Endingdate = $table['Reservation_DateEnd'];
+      $Endingdate2 = strtotime("$Endingdate");
+      $timeDiff = abs($Endingdate2 - $Startingdate2);
+      $numberofdays = $timeDiff/86400;
+      $numberofdays = floatval($numberofdays);
+      $assuranceprice =   $table['Reservation_Price'];
+      $assuranceprice = floatval($assuranceprice);
+      $fuellevel =   $table['Reservation_FuelLevel'];
+      $fuellevel = floatval($fuellevel); 
+      $reservationprice =   $table['Reservation_Price'];
+      $reservationprice = floatval($assuranceprice);
+      if($table['Reservation_Assurance']==0){$assurance = $numberofdays*$carstate;}else $assuranceprice = $numberofdays*10;
+      
+      $fuellevel = 15*$table['Reservation_FuelLevel'];
+      $rentprice = $reservationprice;
+    
                   
+                  
+      $total = $assuranceprice + $reservationprice +$fuellevel ;
+       $query = "UPDATE reservation SET Reservation_FuelLevel='$fuelstate',Reservation_CarState='$carstate', Reservation_DateEnd='$endingdate' , Reservation_State='0', Reservation_Price='$total' WHERE User_Id = '$user_id' ";
+                  
+                if($conn->query($query) == TRUE)  {         
+                  $reservationid = $table['Reservation_Id'];
                   echo("<table><tr>");
-                    echo("Reservation Id $reservationid");
+                    echo("Thank you for returning your car.");
                    echo(" 
                 </tr>
 
@@ -159,22 +149,22 @@
     
   </tr>
   <tr>
-    <td>Reservation Price</td>
+    <td>Reservation Price With Fuel and Car state included</td>
     <td>");echo($rentprice);echo("€</td>
     
   </tr>
   <tr>
     <td>Total</td>
-    <td>");echo($reservationprice);echo("€</td>
+    <td>");echo($total);echo("€</td>
     
   </tr>
   
  
  </table>");
                                    
+            }   
             
-            
-              }
+              }else header("location:Car.php?carnotavailable=" . urlencode(base64_encode("You have no reservation to return.")));
             
                     
         
