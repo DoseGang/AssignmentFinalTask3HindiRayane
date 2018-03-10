@@ -111,7 +111,8 @@
             </ul>
         
         </nav>
-         <a><button class="buttontotop" onclick="location.href ='#top';"  title="Go to top">Back to Top</button></a>
+                  <div style ="position:absolute;"><a><button class="buttontotop" onclick="location.href ='#top';"  title="Go to top">Back to Top</button></a><br><br><br>
+         <a><button class="buttontotop" onclick="location.href ='filtre.php';"  title="Go to top">Filtrer</button></a></div>
         
        <?php 
        

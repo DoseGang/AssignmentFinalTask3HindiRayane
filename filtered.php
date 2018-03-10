@@ -3,13 +3,13 @@
 <?php include("database.php");
       
       
-    $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
-    $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Login.Php";
-    $home_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Home.php";
-    $logout_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Logout.php";
-    $moto_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Moto.php"; 
-    $register_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Register.php"; 
-    $car_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Car.php";
+    $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/Loggedin.php";
+    $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/Login.Php";
+    $home_address ="http://localhost/AssignmentFinalTask3HindiRayane/Home.php";
+    $logout_address ="http://localhost/AssignmentFinalTask3HindiRayane//Logout.php";
+    $moto_address ="http://localhost/AssignmentFinalTask3HindiRayane/Moto.php"; 
+    $register_address ="http://localhost/AssignmentFinalTask3HindiRayane/Register.php"; 
+    $car_address ="http://localhost/AssignmentFinalTask3HindiRayane/Car.php";
     session_start();
     @$user_check = $_SESSION['login_user'];
     $ses_sql = mysqli_query($conn,"select User_Username from user where User_Username='$user_check' ");
@@ -21,37 +21,6 @@
      $gearboxtype = $_POST['gearbox'];
      $luggagesize = $_POST['trunk'];
      $price = $_POST['price'];
-    
-    function search_keywords_id()
-    {
-        include("database.php");
-        $user_input = $_POST['searchtext'];
-        $min_length = 1;
-        if(strlen($user_input) >= $min_length)
-        {
-            
-           
-            $get_output = "SELECT * FROM vehicule WHERE (Vehicule_Brand LIKE '%".$user_input."%') OR (Vehicule_Name LIKE '%".$user_input."%') ";
-            $get_output= htmlspecialchars($get_output);
-             
-            $store_output = mysqli_query($conn, $get_output);
-           $row_count = mysqli_num_rows($store_output);
-            if($row_count > 0){
-                while ($row_of_searchmatch = mysqli_fetch_array($store_output))
-                {
-                    echo ("<div class='visionofart'>");
-                    echo ("<a target='_blank' href=". $row_of_searchmatch['Vehicule_PictureURL'] .">");
-                    echo ("<img src=" . $row_of_searchmatch['Vehicule_PictureURL']. " alt=". $row_of_searchmatch['Vehicule_Description'] ." width='600' ");
-                    echo ("</a> <div class='description'>".$row_of_searchmatch['Vehicule_Description']." #</div></div>");        
-                  
-                }
-            }else header("Location: Car.php?msg5=" . urlencode(base64_encode("No matches found.")));
-             
-        }
-                
-            
-     }
-              
     
 ?>
 <html lang="en">
@@ -116,7 +85,8 @@
             </ul>
         
         </nav>
-         <a><button class="buttontotop" onclick="location.href ='#top';"  title="Go to top">Back to Top</button></a>
+         <div style ="position:absolute;"><a><button class="buttontotop" onclick="location.href ='#top';"  title="Go to top">Back to Top</button></a><br><br><br>
+         <a><button class="buttontotop" onclick="location.href ='filtre.php';"  title="Go to top">Filtrer</button></a></div>
         
        <?php        
                
@@ -171,20 +141,5 @@
         
       
     </body>
-
-    
-    
-    
-
-
-
-
- 
-
-
-
-
-
-
 
 </html>

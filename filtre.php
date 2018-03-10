@@ -23,7 +23,7 @@
     
     <body onload="">
         
-        <h1 class = "topborder"  id = "topbordertitle">Vision Of Art</h1>
+        <h1 class = "topborder"  id = "topbordertitle">C.R Luxury</h1>
         <input type = "checkbox" id="menuToggle">
         <label for="menuToggle" class="menu-icon">&#9776;</label>
         <header>
@@ -51,7 +51,6 @@
         
         <form  method="POST" action = "filtered.php">
         Brand :<br>
-  <input type="radio" name="brand" value="*" checked="checked"> All<br>
   <input type="radio" name="brand" value="Audi"> Audi<br>
   <input type="radio" name="brand" value="Bentley"> Bentley<br>
   <input type="radio" name="brand" value="Rolls Royce"> Rolls Royce<br>
@@ -59,15 +58,13 @@
   <br>
   
   Places :<br>
-  <input type="radio" name="places" value="*" checked="checked"> All<br>
   <input type="radio" name="places" value="2"> 2<br>
   <input type="radio" name="places" value="4"> 4<br>
   <input type="radio" name="places" value="7"> 7<br>
   <input type="radio" name="places" value="8"> 8<br>
   <br>
   
-  Price :<br>
-  <input type="radio" name="price" value="*" checked="checked"> All<br>
+  Price (per day) :<br>
   <input type="radio" name="price" value="0"> 0 - 500<br>
   <input type="radio" name="price" value="500"> 500 - 1000<br>
   <input type="radio" name="price" value="1000"> 1000 - 1500<br>
@@ -75,13 +72,11 @@
   <br>
   
   Trunk size :<br>
-  <input type="radio" name="trunk" value="*" checked="checked"> All<br>
   <input type="radio" name="trunk" value="small"> Small<br>
   <input type="radio" name="trunk" value="medium"> Medium<br>
   <input type="radio" name="trunk" value="large"> Large<br><br>
   
   Gearbox :<br>
-  <input type="radio" name="gearbox" value="*" checked="checked"> All<br>
   <input type="radio" name="gearbox" value="automatic"> Automatic<br>
   <input type="radio" name="gearbox" value="manual"> Manual<br>
   <br>
