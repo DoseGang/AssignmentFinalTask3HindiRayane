@@ -83,9 +83,9 @@ nav a:hover {
 
 .menu {
    width: 200px;
-   line-height: 80px;
+   line-height: 70px;
    height:auto;
-   position:absolute;
+   position:fixed;
    background:black;
    left:-240px;
    transition: all .3s ease-in-out;

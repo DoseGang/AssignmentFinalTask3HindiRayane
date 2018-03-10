@@ -18,7 +18,9 @@
     $row2 = mysqli_fetch_array($ses_sql2,MYSQLI_ASSOC);
     $VehiculeSpec_Id = $row2['VehiculeSpec_Id'];
 
-    
+    $ses_sql3= mysqli_query($conn,"SELECT Reservation_State from reservation WHERE User_Id='$User_Id' ");
+    $row3= mysqli_fetch_array($ses_sql3,MYSQLI_ASSOC);
+    $Reservation_State = $row3['Reservation_State'];
    
 
     
@@ -71,11 +73,13 @@
             {
             
                 
-           } else {header("location:Car.php?carnotavailable=" . urlencode(base64_encode("This vehicule isn't available anymore"))); } ?>
+           } else {header("location:Car.php?carnotavailable=" . urlencode(base64_encode("This vehicule isn't available anymore."))); } 
     
-
-        
-        <form  method="POST" action="CarReservation.php" >
+        if($Reservation_State==1){
+        header("location:Car.php?carnotavailable=" . urlencode(base64_encode("You already have a reservation running."))); 
+        } else{
+         ?>
+        <form  method="POST" action="CarReservation.php" target="_blank">
         
             <div class="identification">
                 
@@ -109,9 +113,10 @@
                     } 
                     echo "</select>"; 
                 
-}                   
+}  
+        }
                
-        ?>        
+         ?>       
                 
                   <label><b>Tick this box for the car insurance. Are taken in consideration accidents,theft,degradations. ( 10€/day, see more at the agency)</b></label> 
                 
