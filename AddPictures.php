@@ -70,7 +70,7 @@ if($_SERVER ["REQUEST_METHOD"]== "POST"){
             
             <li><a href="Loggedin.php">HOME</a></li>
             <li><a href="Logout.Php">LOGOUT</a></li>
-            <li><a href="Car.php">CAR</a></li>
+            <li><a href="Car.php">CARS</a></li>
             <li><a href="Moto.php">MOTORCYCLES</a></li>
             <li><a href="RemovePictures.php">REMOVE CARS</a></li>
             
