@@ -11,7 +11,6 @@
     session_start();
 
     @$user_check = $_SESSION['login_user'];
-    $login_session = $row['User_Username'];
 ?>
 <html lang="en">
     <head>
@@ -39,12 +38,12 @@
         <nav class ="menu">
         <ul>
             
-           <?php  if(isset($_SESSION['login_user'])){
+           <?php  if(isset($_SESSION['login_user'])) {
             echo  "<li><a href=".$loggedin_address.">HOME</a></li>"; } else echo
             "<li><a href=".$home_address.">HOME</a></li>";
             
-               if(isset($_SESSION['login_user'])){echo "<li><a href=".$logout_address.">LOGOUT</a></li>";echo "<li><a href=".$moto_address.">MOTORCYCLES</a></li>";
-                                                 }
+               if(isset($_SESSION['login_user'])){echo "<li><a href=".$logout_address.">LOGOUT</a></li>";echo "<li><a href=".$moto_address.">MOTORCYCLES</a></li>"; 
+             }
             
             else echo "<li><a href=".$loggin_address.">LOGIN</a></li>";  ?>
             <?php @$user_check = $_SESSION['login_user'];

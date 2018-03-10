@@ -117,6 +117,13 @@ if(mysqli_query($conn,$query) == TRUE){
                       <option value="2">~50%</option>
                       <option value="3">~75%</option>
                   </select>
+
+                  <select name="Parking" required>
+                      <option value="0">Empty</option>
+                      <option value="1">Jules Joffrin</option>
+                      <option value="2">Asnieres</option>
+                      <option value="3">BNF</option>
+                  </select>
                   
                      
                 
