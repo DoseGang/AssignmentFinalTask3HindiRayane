@@ -191,12 +191,12 @@
         
       
                 
-            <footer>
+          
+           <footer>
     
             
-       <span style="color: white";>Made by Rayane HINDI, Eléonore JEANNIOT & Jean-François LE GAL.</span>
+       <span style="color: white";>L’EXCELLENCE, C’EST AUSSI UN SERVICE.</span>
         
     </footer> 
-        
       
     </body>
