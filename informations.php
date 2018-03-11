@@ -2,14 +2,7 @@
 <?php include("database.php");
       include("Reset_UserID.php");
       include("Reset_Information_Id.php");    
-      
-    $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
-    $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Login.Php";
-    $home_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Home.php";
-    $logout_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Logout.php";
-    $moto_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Moto.php"; 
-    $register_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Register.php"; 
-    $car_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Car.php";
+   
     session_start();
     @$user_check = $_SESSION['login_user'];
     $ses_sql = mysqli_query($conn,"select User_ID, User_Username, User_Password, User_Email, User_FirstName, User_SecondName, User_Adresse, User_License, User_MobileNumber, User_DateOfBirth, User_Country, User_City from user where User_Username='$user_check' ");

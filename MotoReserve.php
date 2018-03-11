@@ -57,14 +57,31 @@
             
         </header>
            
-        <nav class ="menu">
-        <ul>
+          <nav class ="menu">
+                <ul>
             
-            <li><a href="Loggedin.php">HOME</a></li>
-            <li><a href="Logout.Php">LOGOUT</a></li>
-            <li><a href="Car.php">CAR</a></li>
-            <li><a href="RemovePictures.php">REMOVE PICTURES</a></li>
+            <li><a class="active" href="LoggedIn.php">HOME</a></li>
+            <li><a href="Logout.php">LOGOUT</a></li>
+            <li><a href="Car.php">CARS</a></li>
+            <li><a href="Moto.php">MOTORCYCLES</a></li>
+            <li><a href="informations.php">MY INFORMATION</a></li>
+            <li><a href="ReturnVehicule.php">RETURN VEHICULE</a></li>
+            <?php $user_check = $_SESSION['login_user'];
+   
+    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' ");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $login_session = $row['User_Username'];
+    $login_state = $row['User_State']; 
+
+    if($row['User_State']==1){
+            echo "<li><a href="; echo"AddPictures.php"; echo">ADD CARS</a></li>";
+            echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVE CARS</a></li>";
+            }
+            if($row['User_State']==2){
+            echo "<li><a href="; echo"parking.php"; echo">PARKING</a></li>";
             
+            }
+            ?>
             </ul>
         
         </nav>
@@ -79,7 +96,7 @@
         header("location:Moto.php?carnotavailable=" . urlencode(base64_encode("You already have a reservation running."))); 
         } else{
          ?>
-        <form  method="POST" action="MotoRent.php" target="_blank">
+        <form  method="POST" action="MotoRent.php" >
         
             <div class="identification">
                 

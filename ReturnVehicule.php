@@ -94,7 +94,7 @@ if(mysqli_query($conn,$query) == TRUE){
         
        
              <?php if($row2['Reservation_State'] == 1){ ?>
-                   <form  method="POST" action="ReservationFacture.php" target="_blank">
+                   <form  method="POST" action="ReservationFacture.php" >
             <label><b>Please fill the returning informations. All the informations are double checked by the agency. If needed, we have all the rights to change any values.   </b></label>
             <div class="return">
                  

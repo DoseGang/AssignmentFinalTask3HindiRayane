@@ -28,7 +28,7 @@
       $valuesql1 = mysqli_fetch_array($storesql1);
       $value = $valuesql1['Vehicule_Id'];
       
-      $sqlcarprice = "SELECT Motorcycle_Price from motorcycle where Motorcycle_Id ='$value'";
+      $sqlcarprice = "SELECT Motorcycle_Price from motorcycle where Vehicule_Id ='$value'";
       $storeprice = mysqli_query($conn,$sqlcarprice);
       $valueprice = mysqli_fetch_array($storeprice);
       $value2 =   $valueprice['Motorcycle_Price'];
@@ -88,17 +88,22 @@
             
         </header>
             
-        <nav class ="menu">
-        <ul>
+          <nav class ="menu">
+                <ul>
             
-            <?php 
-        
-    $user_check = $_SESSION['login_user'];
-    $ses_sql = mysqli_query($conn,"select * from user WHERE User_Username='$user_check' ");
-    $rowstate = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-    $login_session = $rowstate['User_Username'];
-    $login_state = $rowstate['User_State']; 
+            <li><a class="active" href="LoggedIn.php">HOME</a></li>
+            <li><a href="Logout.php">LOGOUT</a></li>
+            <li><a href="Car.php">CARS</a></li>
+            <li><a href="Moto.php">MOTORCYCLES</a></li>
+            <li><a href="informations.php">MY INFORMATION</a></li>
+            <li><a href="ReturnVehicule.php">RETURN VEHICULE</a></li>
+            <?php $user_check = $_SESSION['login_user'];
    
+    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' ");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $login_session = $row['User_Username'];
+    $login_state = $row['User_State']; 
+
     if($row['User_State']==1){
             echo "<li><a href="; echo"AddPictures.php"; echo">ADD CARS</a></li>";
             echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVE CARS</a></li>";
@@ -107,13 +112,10 @@
             echo "<li><a href="; echo"parking.php"; echo">PARKING</a></li>";
             
             }
-    ?>
-            
-            
+            ?>
             </ul>
         
         </nav>
-       
         
         
        <?php 

@@ -3,13 +3,7 @@
 <?php include("database.php");
       
       
-    $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
-    $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Login.Php";
-    $home_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Home.php";
-    $logout_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Logout.php";
-    $moto_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Moto.php"; 
-    $register_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Register.php"; 
-    $car_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Car.php";
+    
     session_start();
     @$user_check = $_SESSION['login_user'];
     $ses_sql = mysqli_query($conn,"select User_Username from user where User_Username='$user_check' ");
@@ -79,36 +73,36 @@
         </header>
             
         <nav class ="menu">
-        <ul>
+                <ul>
+             <?php if(isset($_SESSION['login_user'])){
+             echo "<li><a href="; echo"LoggedIn.php"; echo">HOME</a></li>";}else {echo "<li><a href="; echo"Home.php"; echo">HOME</a></li>";}?>
+            <li><a href="Logout.php">LOGOUT</a></li>
+            <li><a href="Car.php">CARS</a></li>
+            <li><a href="Moto.php">MOTORCYCLES</a></li>
             
-           <?php  if(isset($_SESSION['login_user'])){
-            echo  "<li><a href=".$loggedin_address.">HOME</a></li>";
-            echo "<li><a href=".$logout_address.">LOGOUT</a></li>";
-            echo "<li><a href=".$moto_address.">CARS</a></li>";
-
-} else {
-            echo "<li><a href=".$home_address.">HOME</a></li>";
-            echo "<li><a href=".$loggin_address.">LOGIN</a></li>";
-            echo "<li><a href=".$register_address.">REGISTER</a></li>";
-            echo "<li><a href=".$car_address.">CARS</a></li>";
-}
-            ?>
-            <?php @$user_check = $_SESSION['login_user'];
-   
-    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' AND User_State =1");
-    $rowstate = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-    $login_session = $rowstate['User_Username'];
-    $login_state = $rowstate['User_State']; 
-
-    if(($rowstate['User_State'])==1){
+            <?php if(isset($_SESSION['login_user'])){
+    $user_check = $_SESSION['login_user'];
+   echo "<li><a href="; echo"Informations.php"; echo">MY INFORMATIONS</a></li>";
+echo "<li><a href="; echo"ReturnVehicule.php"; echo">RETURN VEHICULE</a></li>";
             
-            echo "<li><a href="; echo"AddPictures.php"; echo">ADD PICTURES</a></li>";
-            echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVEPICTURES</a></li>";
+        $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' ");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $login_session = $row['User_Username'];
+    $login_state = $row['User_State']; 
+
+    if($row['User_State']==1){
+            echo "<li><a href="; echo"AddPictures.php"; echo">ADD CARS</a></li>";
+            echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVE CARS</a></li>";
             }
+            if($row['User_State']==2){
+            echo "<li><a href="; echo"parking.php"; echo">PARKING</a></li>";
+            
+            }
+        }
             ?>
-            
-            
             </ul>
+        
+        
         
         </nav>
          <a><button class="buttontotop" onclick="location.href ='#top';"  title="Go to top">Back to Top</button></a>

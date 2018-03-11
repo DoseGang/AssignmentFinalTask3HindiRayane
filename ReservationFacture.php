@@ -2,11 +2,7 @@
 <?php include("database.php");
       include("SessionCheck.php");
       include("Reset_PicturesID.php");
-    $loggedin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Loggedin.php";
-    $loggin_address = "http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Login.Php";
-    $home_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Home.php";
-    $logout_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Logout.php";
-    $moto_address ="http://localhost/AssignmentFinalTask3HindiRayane/AssignmentFinalTask3HindiRayane/Moto.php"; 
+   
 if($_SERVER ["REQUEST_METHOD"]== "POST"){
         $getuser_Id = "SELECT User_Id from user WHERE User_Username ='$login_session'";
         $storeuser_id = mysqli_query($conn,$getuser_Id);
@@ -40,12 +36,12 @@ if($_SERVER ["REQUEST_METHOD"]== "POST"){
     
     <body>
        <a name="top"></a>
-        <h1 class = "topborder"  id = "topbordertitle">Car Details</h1>
+        <h1 class = "topborder"  id = "topbordertitle">Recipe</h1>
         <input type = "checkbox" id="menuToggle">
         <label for="menuToggle" class="menu-icon">&#9776;</label>
         <header>
             <div id="brand"><?php if(isset($_GET['msg5'])){
-    echo base64_decode(urldecode($_GET['msg5'])); }else echo "Reservation Confirmation"; ?>
+    echo base64_decode(urldecode($_GET['msg5'])); }else echo "Returning your car ? Here is the final bill"; ?>
             </div>
             <div class="pagebg"></div>
             <form action="" method="GET" target="_blank" >
@@ -56,17 +52,22 @@ if($_SERVER ["REQUEST_METHOD"]== "POST"){
             
         </header>
             
-        <nav class ="menu">
-        <ul>
+         <nav class ="menu">
+                <ul>
             
-            <?php 
-        
-    $user_check = $_SESSION['login_user'];
-    $ses_sql = mysqli_query($conn,"select * from user WHERE User_Username='$user_check' ");
-    $rowstate = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-    $login_session = $rowstate['User_Username'];
-    $login_state = $rowstate['User_State']; 
+            <li><a class="active" href="LoggedIn.php">HOME</a></li>
+            <li><a href="Logout.php">LOGOUT</a></li>
+            <li><a href="Car.php">CARS</a></li>
+            <li><a href="Moto.php">MOTORCYCLES</a></li>
+            <li><a href="informations.php">MY INFORMATION</a></li>
+            <li><a href="ReturnVehicule.php">RETURN VEHICULE</a></li>
+            <?php $user_check = $_SESSION['login_user'];
    
+    $ses_sql = mysqli_query($conn,"select * from user where User_Username='$user_check' ");
+    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $login_session = $row['User_Username'];
+    $login_state = $row['User_State']; 
+
     if($row['User_State']==1){
             echo "<li><a href="; echo"AddPictures.php"; echo">ADD CARS</a></li>";
             echo "<li><a href="; echo"RemovePictures.php"; echo">REMOVE CARS</a></li>";
@@ -75,9 +76,7 @@ if($_SERVER ["REQUEST_METHOD"]== "POST"){
             echo "<li><a href="; echo"parking.php"; echo">PARKING</a></li>";
             
             }
-    ?>
-            
-            
+            ?>
             </ul>
         
         </nav>

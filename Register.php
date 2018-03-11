@@ -50,9 +50,6 @@
             
             $register_user->execute();
             
-            
-            
-            reset_User_ID();
            
             
                 if($register_user->fetch()){
